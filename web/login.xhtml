@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/templateLogin.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Comité Mantenimiento"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <p:messages globalOnly="true"/>
+                <h:panelGrid id="grid" columns="3" style="margin-left: auto; margin-right: auto; padding: 0; margin-top: 150px" cellpadding="0" cellspacing="0" border="0">
+                    
+                    <f:facet name="header">
+                        <h:panelGroup style="display:block; text-align:center; font-size:25px">
+                            <h:outputText value="Comite Mantenimiento"/>
+                        </h:panelGroup>
+                    </f:facet>
+                    
+                    <h:outputText value=""/>
+                    <h:outputText value=""/>
+                    <h:outputText value=""/>
+                    
+                    <h:outputText value=""/>
+                    <h:outputText value=""/>
+                    <h:outputText value=""/>
+                    
+                    <h:outputText value=" Usuario"/>
+                    <p:inputText id="hitUsuario" value="#{loginController.usuarios.usuarioUsuario}" required="true" requiredMessage="Campo Obligatorio"/>
+                    <p:messages for="hitUsuario" style="font-size: 9px"/>
+                        
+                    <h:outputText value="Password"/>
+                    <p:password id="hitPassword" value="#{loginController.usuarios.contrasenaUsuario}" required="true" requiredMessage="Campo Obligatorio"/>
+                    <p:messages for="hitPassword" style="font-size: 9px"/>
+                    
+                    <h:outputText value=""/>
+                    <h:outputText value=""/>
+                    <h:outputText value=""/>
+                    
+                    <f:facet name="footer">
+                        <h:panelGroup style="display:block; text-align:center">
+                            <p:commandButton value="Iniciar Sesión" action="#{usuariosController.autenticar(loginController.usuarios)}" update="grid"/>
+                        </h:panelGroup>
+                    </f:facet>
+                    
+                </h:panelGrid>    
+            </h:form>
+        </ui:define>    
+    </ui:composition>
+</html>
+

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewControlaccesoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewControlaccesoLabel_idControlAcceso}"/>
+                    <h:outputText value="#{controlaccesoController.selected.idControlAcceso}" title="#{bundle.ViewControlaccesoTitle_idControlAcceso}"/>
+                    <h:outputText value="#{bundle.ViewControlaccesoLabel_fecingControlacceso}"/>
+                    <h:outputText value="#{controlaccesoController.selected.fecingControlacceso}" title="#{bundle.ViewControlaccesoTitle_fecingControlacceso}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewControlaccesoLabel_fecsalControlacceso}"/>
+                    <h:outputText value="#{controlaccesoController.selected.fecsalControlacceso}" title="#{bundle.ViewControlaccesoTitle_fecsalControlacceso}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewControlaccesoLabel_moduloControlacceso}"/>
+                    <h:outputText value="#{controlaccesoController.selected.moduloControlacceso}" title="#{bundle.ViewControlaccesoTitle_moduloControlacceso}"/>
+                    <h:outputText value="#{bundle.ViewControlaccesoLabel_fkidEmpresas}"/>
+                    <h:outputText value="#{controlaccesoController.selected.fkidEmpresas}" title="#{bundle.ViewControlaccesoTitle_fkidEmpresas}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{controlaccesoController.destroyAndView}" value="#{bundle.ViewControlaccesoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewControlaccesoEditLink}"/>
+                <br />
+                <h:commandLink action="#{controlaccesoController.prepareCreate}" value="#{bundle.ViewControlaccesoCreateLink}" />
+                <br />
+                <h:commandLink action="#{controlaccesoController.prepareList}" value="#{bundle.ViewControlaccesoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewControlaccesoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

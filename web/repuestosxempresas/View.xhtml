@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewRepuestosxempresasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewRepuestosxempresasLabel_idRepuestosxEmpresas}"/>
+                    <h:outputText value="#{repuestosxempresasController.selected.idRepuestosxEmpresas}" title="#{bundle.ViewRepuestosxempresasTitle_idRepuestosxEmpresas}"/>
+                    <h:outputText value="#{bundle.ViewRepuestosxempresasLabel_estadoRepuestoempresa}"/>
+                    <h:outputText value="#{repuestosxempresasController.selected.estadoRepuestoempresa}" title="#{bundle.ViewRepuestosxempresasTitle_estadoRepuestoempresa}"/>
+                    <h:outputText value="#{bundle.ViewRepuestosxempresasLabel_codigoRepuestoempresa}"/>
+                    <h:outputText value="#{repuestosxempresasController.selected.codigoRepuestoempresa}" title="#{bundle.ViewRepuestosxempresasTitle_codigoRepuestoempresa}"/>
+                    <h:outputText value="#{bundle.ViewRepuestosxempresasLabel_cantidadRepuestoempresa}"/>
+                    <h:outputText value="#{repuestosxempresasController.selected.cantidadRepuestoempresa}" title="#{bundle.ViewRepuestosxempresasTitle_cantidadRepuestoempresa}"/>
+                    <h:outputText value="#{bundle.ViewRepuestosxempresasLabel_precioRepuestoepresa}"/>
+                    <h:outputText value="#{repuestosxempresasController.selected.precioRepuestoepresa}" title="#{bundle.ViewRepuestosxempresasTitle_precioRepuestoepresa}"/>
+                    <h:outputText value="#{bundle.ViewRepuestosxempresasLabel_descripcionRepuestoempresa}"/>
+                    <h:outputText value="#{repuestosxempresasController.selected.descripcionRepuestoempresa}" title="#{bundle.ViewRepuestosxempresasTitle_descripcionRepuestoempresa}"/>
+                    <h:outputText value="#{bundle.ViewRepuestosxempresasLabel_fkidRepuestos}"/>
+                    <h:outputText value="#{repuestosxempresasController.selected.fkidRepuestos}" title="#{bundle.ViewRepuestosxempresasTitle_fkidRepuestos}"/>
+                    <h:outputText value="#{bundle.ViewRepuestosxempresasLabel_fkidUsuarios}"/>
+                    <h:outputText value="#{repuestosxempresasController.selected.fkidUsuarios}" title="#{bundle.ViewRepuestosxempresasTitle_fkidUsuarios}"/>
+                    <h:outputText value="#{bundle.ViewRepuestosxempresasLabel_fkidEmpresas}"/>
+                    <h:outputText value="#{repuestosxempresasController.selected.fkidEmpresas}" title="#{bundle.ViewRepuestosxempresasTitle_fkidEmpresas}"/>
+                    <h:outputText value="#{bundle.ViewRepuestosxempresasLabel_fkidMarcasRepuestos}"/>
+                    <h:outputText value="#{repuestosxempresasController.selected.fkidMarcasRepuestos}" title="#{bundle.ViewRepuestosxempresasTitle_fkidMarcasRepuestos}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{repuestosxempresasController.destroyAndView}" value="#{bundle.ViewRepuestosxempresasDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewRepuestosxempresasEditLink}"/>
+                <br />
+                <h:commandLink action="#{repuestosxempresasController.prepareCreate}" value="#{bundle.ViewRepuestosxempresasCreateLink}" />
+                <br />
+                <h:commandLink action="#{repuestosxempresasController.prepareList}" value="#{bundle.ViewRepuestosxempresasShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewRepuestosxempresasIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

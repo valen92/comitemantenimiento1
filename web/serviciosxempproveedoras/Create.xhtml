@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateServiciosxempproveedorasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateServiciosxempproveedorasLabel_idServiciosxEmpProveedoras}" for="idServiciosxEmpProveedoras" />
+                    <h:inputText id="idServiciosxEmpProveedoras" value="#{serviciosxempproveedorasController.selected.idServiciosxEmpProveedoras}" title="#{bundle.CreateServiciosxempproveedorasTitle_idServiciosxEmpProveedoras}" required="true" requiredMessage="#{bundle.CreateServiciosxempproveedorasRequiredMessage_idServiciosxEmpProveedoras}"/>
+                    <h:outputLabel value="#{bundle.CreateServiciosxempproveedorasLabel_fkidEmpresas}" for="fkidEmpresas" />
+                    <h:selectOneMenu id="fkidEmpresas" value="#{serviciosxempproveedorasController.selected.fkidEmpresas}" title="#{bundle.CreateServiciosxempproveedorasTitle_fkidEmpresas}" required="true" requiredMessage="#{bundle.CreateServiciosxempproveedorasRequiredMessage_fkidEmpresas}">
+                        <f:selectItems value="#{empresasController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateServiciosxempproveedorasLabel_fkidServicios}" for="fkidServicios" />
+                    <h:selectOneMenu id="fkidServicios" value="#{serviciosxempproveedorasController.selected.fkidServicios}" title="#{bundle.CreateServiciosxempproveedorasTitle_fkidServicios}" required="true" requiredMessage="#{bundle.CreateServiciosxempproveedorasRequiredMessage_fkidServicios}">
+                        <f:selectItems value="#{serviciosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{serviciosxempproveedorasController.create}" value="#{bundle.CreateServiciosxempproveedorasSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{serviciosxempproveedorasController.prepareList}" value="#{bundle.CreateServiciosxempproveedorasShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateServiciosxempproveedorasIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

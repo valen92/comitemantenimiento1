@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateClaserepuestosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateClaserepuestosLabel_idClaseRepuestos}" for="idClaseRepuestos" />
+                    <h:inputText id="idClaseRepuestos" value="#{claserepuestosController.selected.idClaseRepuestos}" title="#{bundle.CreateClaserepuestosTitle_idClaseRepuestos}" required="true" requiredMessage="#{bundle.CreateClaserepuestosRequiredMessage_idClaseRepuestos}"/>
+                    <h:outputLabel value="#{bundle.CreateClaserepuestosLabel_nombreClaserepuesto}" for="nombreClaserepuesto" />
+                    <h:inputText id="nombreClaserepuesto" value="#{claserepuestosController.selected.nombreClaserepuesto}" title="#{bundle.CreateClaserepuestosTitle_nombreClaserepuesto}" required="true" requiredMessage="#{bundle.CreateClaserepuestosRequiredMessage_nombreClaserepuesto}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{claserepuestosController.create}" value="#{bundle.CreateClaserepuestosSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{claserepuestosController.prepareList}" value="#{bundle.CreateClaserepuestosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateClaserepuestosIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditServicioscontratoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditServicioscontratoLabel_idServiciosContrato}" for="idServiciosContrato" />
+                    <h:inputText id="idServiciosContrato" value="#{servicioscontratoController.selected.idServiciosContrato}" title="#{bundle.EditServicioscontratoTitle_idServiciosContrato}" required="true" requiredMessage="#{bundle.EditServicioscontratoRequiredMessage_idServiciosContrato}"/>
+                    <h:outputLabel value="#{bundle.EditServicioscontratoLabel_fkidContratos}" for="fkidContratos" />
+                    <h:selectOneMenu id="fkidContratos" value="#{servicioscontratoController.selected.fkidContratos}" title="#{bundle.EditServicioscontratoTitle_fkidContratos}" required="true" requiredMessage="#{bundle.EditServicioscontratoRequiredMessage_fkidContratos}">
+                        <f:selectItems value="#{contratosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditServicioscontratoLabel_fkidServiciosxEmpProveedoras}" for="fkidServiciosxEmpProveedoras" />
+                    <h:selectOneMenu id="fkidServiciosxEmpProveedoras" value="#{servicioscontratoController.selected.fkidServiciosxEmpProveedoras}" title="#{bundle.EditServicioscontratoTitle_fkidServiciosxEmpProveedoras}" required="true" requiredMessage="#{bundle.EditServicioscontratoRequiredMessage_fkidServiciosxEmpProveedoras}">
+                        <f:selectItems value="#{serviciosxempproveedorasController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditServicioscontratoLabel_fkidEmpresas}" for="fkidEmpresas" />
+                    <h:selectOneMenu id="fkidEmpresas" value="#{servicioscontratoController.selected.fkidEmpresas}" title="#{bundle.EditServicioscontratoTitle_fkidEmpresas}" required="true" requiredMessage="#{bundle.EditServicioscontratoRequiredMessage_fkidEmpresas}">
+                        <f:selectItems value="#{empresasController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{servicioscontratoController.update}" value="#{bundle.EditServicioscontratoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditServicioscontratoViewLink}"/>
+                <br />
+                <h:commandLink action="#{servicioscontratoController.prepareList}" value="#{bundle.EditServicioscontratoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditServicioscontratoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

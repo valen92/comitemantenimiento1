@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListEmpresasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                
+                <h:outputText escape="false" value="#{bundle.ListEmpresasEmpty}" rendered="#{empresasController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{empresasController.items.rowCount > 0}">
+                    <h:outputText value="#{empresasController.pagination.pageFirstItem + 1}..#{empresasController.pagination.pageLastItem + 1}/#{empresasController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{empresasController.previous}" value="#{bundle.Previous} #{empresasController.pagination.pageSize}" rendered="#{empresasController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{empresasController.next}" value="#{bundle.Next} #{empresasController.pagination.pageSize}" rendered="#{empresasController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{empresasController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmpresasTitle_idEmpresas}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idEmpresas}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmpresasTitle_nitEmpresa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nitEmpresa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmpresasTitle_nombreEmpresa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombreEmpresa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmpresasTitle_direccionEmpresa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.direccionEmpresa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmpresasTitle_fijoEmpresa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fijoEmpresa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmpresasTitle_movilEmpresa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.movilEmpresa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmpresasTitle_represlegalEmpresa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.represlegalEmpresa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmpresasTitle_fecingEmpresa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fecingEmpresa}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmpresasTitle_estadoEmpresa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.estadoEmpresa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmpresasTitle_logoEmpresa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.logoEmpresa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmpresasTitle_tipoEmpresa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoEmpresa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmpresasTitle_fkidCiudad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fkidCiudad}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmpresasTitle_servicioscontrato}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.servicioscontrato}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{empresasController.prepareView}" value="#{bundle.ListEmpresasViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{empresasController.prepareEdit}" value="#{bundle.ListEmpresasEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{empresasController.destroy}" value="#{bundle.ListEmpresasDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{empresasController.prepareCreate}" value="#{bundle.ListEmpresasCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListEmpresasIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewHerramientasxempcomiteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewHerramientasxempcomiteLabel_idHerramientasxEmpComite}"/>
+                    <h:outputText value="#{herramientasxempcomiteController.selected.idHerramientasxEmpComite}" title="#{bundle.ViewHerramientasxempcomiteTitle_idHerramientasxEmpComite}"/>
+                    <h:outputText value="#{bundle.ViewHerramientasxempcomiteLabel_descripcionHerramempcomite}"/>
+                    <h:outputText value="#{herramientasxempcomiteController.selected.descripcionHerramempcomite}" title="#{bundle.ViewHerramientasxempcomiteTitle_descripcionHerramempcomite}"/>
+                    <h:outputText value="#{bundle.ViewHerramientasxempcomiteLabel_disponibilidadHerramempcomite}"/>
+                    <h:outputText value="#{herramientasxempcomiteController.selected.disponibilidadHerramempcomite}" title="#{bundle.ViewHerramientasxempcomiteTitle_disponibilidadHerramempcomite}"/>
+                    <h:outputText value="#{bundle.ViewHerramientasxempcomiteLabel_codigoHerramempcomite}"/>
+                    <h:outputText value="#{herramientasxempcomiteController.selected.codigoHerramempcomite}" title="#{bundle.ViewHerramientasxempcomiteTitle_codigoHerramempcomite}"/>
+                    <h:outputText value="#{bundle.ViewHerramientasxempcomiteLabel_estadoHerramempcomite}"/>
+                    <h:outputText value="#{herramientasxempcomiteController.selected.estadoHerramempcomite}" title="#{bundle.ViewHerramientasxempcomiteTitle_estadoHerramempcomite}"/>
+                    <h:outputText value="#{bundle.ViewHerramientasxempcomiteLabel_cantidadHerramempcomite}"/>
+                    <h:outputText value="#{herramientasxempcomiteController.selected.cantidadHerramempcomite}" title="#{bundle.ViewHerramientasxempcomiteTitle_cantidadHerramempcomite}"/>
+                    <h:outputText value="#{bundle.ViewHerramientasxempcomiteLabel_precioHerramempcomite}"/>
+                    <h:outputText value="#{herramientasxempcomiteController.selected.precioHerramempcomite}" title="#{bundle.ViewHerramientasxempcomiteTitle_precioHerramempcomite}"/>
+                    <h:outputText value="#{bundle.ViewHerramientasxempcomiteLabel_fkidMarcasHerramientas}"/>
+                    <h:outputText value="#{herramientasxempcomiteController.selected.fkidMarcasHerramientas}" title="#{bundle.ViewHerramientasxempcomiteTitle_fkidMarcasHerramientas}"/>
+                    <h:outputText value="#{bundle.ViewHerramientasxempcomiteLabel_fkidUsuarios}"/>
+                    <h:outputText value="#{herramientasxempcomiteController.selected.fkidUsuarios}" title="#{bundle.ViewHerramientasxempcomiteTitle_fkidUsuarios}"/>
+                    <h:outputText value="#{bundle.ViewHerramientasxempcomiteLabel_fkidEmpresas}"/>
+                    <h:outputText value="#{herramientasxempcomiteController.selected.fkidEmpresas}" title="#{bundle.ViewHerramientasxempcomiteTitle_fkidEmpresas}"/>
+                    <h:outputText value="#{bundle.ViewHerramientasxempcomiteLabel_fkidHerramientas}"/>
+                    <h:outputText value="#{herramientasxempcomiteController.selected.fkidHerramientas}" title="#{bundle.ViewHerramientasxempcomiteTitle_fkidHerramientas}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{herramientasxempcomiteController.destroyAndView}" value="#{bundle.ViewHerramientasxempcomiteDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewHerramientasxempcomiteEditLink}"/>
+                <br />
+                <h:commandLink action="#{herramientasxempcomiteController.prepareCreate}" value="#{bundle.ViewHerramientasxempcomiteCreateLink}" />
+                <br />
+                <h:commandLink action="#{herramientasxempcomiteController.prepareList}" value="#{bundle.ViewHerramientasxempcomiteShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewHerramientasxempcomiteIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

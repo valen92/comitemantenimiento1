@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Comité Mantenimiento"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <h:panelGrid columns="1" >
+                    <p:tabMenu activeIndex="#{tabMenuController.index}">
+                        <p:menuitem value="Inicio" url="/faces/Inicio.xhtml" icon="ui-icon-home">
+                            <f:param name="index" value="0" />
+                        </p:menuitem>
+                        <p:menuitem value="Repuestos" url="/faces/repuestosxempresas/Repuestos.xhtml" icon="ui-icon-suitcase">
+                            <f:param name="index" value="1" />
+                        </p:menuitem>
+                        <p:menuitem value="Herramientas" url="/faces/herramientasxempcomite/herramientas.xhtml" icon="ui-icon-wrench">
+                            <f:param name="index" value="2" />
+                        </p:menuitem>
+                        <p:menuitem value="Directorio Miembros" url="/faces/usuarios/DirMiembros.xhtml" icon="ui-icon-contact"  >
+                            <f:param name="index" value="3" />
+                        </p:menuitem>
+                        <p:menuitem value="Directorio Proveedores" url="/faces/usuarios/DirProveedores.xhtml"  icon="ui-icon-contact">
+                            <f:param name="index" value="4" />
+                        </p:menuitem>
+                        <p:menuitem value="Servicios" url="/faces/servicios/ListServicios.xhtml" icon="ui-icon-person">
+                            <f:param name="index" value="5" />
+                        </p:menuitem>
+                        <p:menuitem value="Normas" url="/faces/normas/Normatividad.xhtml" icon="ui-icon-document">
+                            <f:param name="index" value="6" />
+                        </p:menuitem>
+                    </p:tabMenu>
+                </h:panelGrid>
+                
+                <p:growl id="msgs" showDetail="true" />
+                <p:panel id="empcomite" header="Comité Mantenimiento - ANDI Seccional Caldas" toggleable="false" closable="false" toggleSpeed="500" closeSpeed="500" widgetVar="panel" style="margin-top:0px">
+
+                    <p:ajax event="close" listener="#{panelView.onClose}" update="msgs" />
+                    <p:ajax event="toggle" listener="#{panelView.onToggle}" update="msgs" />
+
+                    <h:panelGrid columns="2" cellpadding="10">
+                        
+                        <p:graphicImage url="/resources/imagenes/Andi.GIF" width="110%"/>
+                        <h:outputText value="La Asociación Nacional de Empresarios de Colombia – ANDI, es una agremiación sin ánimo de lucro, que tiene como objetivo difundir y propi​ciar los 
+                                      principios políticos, económicos y sociales de un sano sistema de libre empresa. Fue fundada el 11 de septiembre de 1944 en Medellín y, desde entonces, es el gremi​o empresarial más importante de Colombia. 
+                                      Está integrado por un porcentaje significativo de empre​sas pertenecientes a sectores como el industrial, financiero, agroindustrial, de alimentos, comercial y de servicios, entre otros. La sede principal 
+                                      de la ANDI se encuentra en Medellín y cuenta con sedes en Bogotá, Cali, Barranquilla, Cartagena, Bucaramanga, Manizales, Pereira, Ibagué, Santander de Quilichao y Villavicencio.​ 
+                                      El Comité de Mantenimiento tiene como objetivo realizar actividades que fortalezcan el área de mantenimiento de cada una de las empresas afiliadas, 
+                                      generando espacios de comunicación empresarial y participación de buenas prácticas."  style=" "/>
+                    </h:panelGrid>
+
+                    <f:facet name="options">
+                        <p:menu>
+                            <p:submenu label="Crear">
+                                <p:menuitem value="Empresa comité" action="#{empresasController.prepareCreate()}"  />
+                                <p:menuitem value="Usuario" action="#{usuariosController.prepareCreate()}"  />
+                                <p:menuitem value="Proveedor" action="#{empresasController.prepareCreateProvedor()}"  />
+                            </p:submenu>
+                            <p:submenu label="Consultar">
+                                <p:menuitem value="Bitácora" action="#{controlaccesoController.prepareList()}"  />
+                            </p:submenu>
+                        </p:menu>
+                    </f:facet>
+                    
+                </p:panel>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

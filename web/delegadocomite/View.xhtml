@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewDelegadocomiteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewDelegadocomiteLabel_idDelegadoComite}"/>
+                    <h:outputText value="#{delegadocomiteController.selected.idDelegadoComite}" title="#{bundle.ViewDelegadocomiteTitle_idDelegadoComite}"/>
+                    <h:outputText value="#{bundle.ViewDelegadocomiteLabel_estadoDelegadocomite}"/>
+                    <h:outputText value="#{delegadocomiteController.selected.estadoDelegadocomite}" title="#{bundle.ViewDelegadocomiteTitle_estadoDelegadocomite}"/>
+                    <h:outputText value="#{bundle.ViewDelegadocomiteLabel_nombreDelegadocomite}"/>
+                    <h:outputText value="#{delegadocomiteController.selected.nombreDelegadocomite}" title="#{bundle.ViewDelegadocomiteTitle_nombreDelegadocomite}"/>
+                    <h:outputText value="#{bundle.ViewDelegadocomiteLabel_telefonoDelegadocomite}"/>
+                    <h:outputText value="#{delegadocomiteController.selected.telefonoDelegadocomite}" title="#{bundle.ViewDelegadocomiteTitle_telefonoDelegadocomite}"/>
+                    <h:outputText value="#{bundle.ViewDelegadocomiteLabel_emailDelegadocomite}"/>
+                    <h:outputText value="#{delegadocomiteController.selected.emailDelegadocomite}" title="#{bundle.ViewDelegadocomiteTitle_emailDelegadocomite}"/>
+                    <h:outputText value="#{bundle.ViewDelegadocomiteLabel_movilDelegadocomite}"/>
+                    <h:outputText value="#{delegadocomiteController.selected.movilDelegadocomite}" title="#{bundle.ViewDelegadocomiteTitle_movilDelegadocomite}"/>
+                    <h:outputText value="#{bundle.ViewDelegadocomiteLabel_fkidEmpresas}"/>
+                    <h:outputText value="#{delegadocomiteController.selected.fkidEmpresas}" title="#{bundle.ViewDelegadocomiteTitle_fkidEmpresas}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{delegadocomiteController.destroyAndView}" value="#{bundle.ViewDelegadocomiteDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewDelegadocomiteEditLink}"/>
+                <br />
+                <h:commandLink action="#{delegadocomiteController.prepareCreate}" value="#{bundle.ViewDelegadocomiteCreateLink}" />
+                <br />
+                <h:commandLink action="#{delegadocomiteController.prepareList}" value="#{bundle.ViewDelegadocomiteShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewDelegadocomiteIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

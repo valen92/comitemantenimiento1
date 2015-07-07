@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditMarcasherramientasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditMarcasherramientasLabel_idMarcasHerramientas}" for="idMarcasHerramientas" />
+                    <h:inputText id="idMarcasHerramientas" value="#{marcasherramientasController.selected.idMarcasHerramientas}" title="#{bundle.EditMarcasherramientasTitle_idMarcasHerramientas}" required="true" requiredMessage="#{bundle.EditMarcasherramientasRequiredMessage_idMarcasHerramientas}"/>
+                    <h:outputLabel value="#{bundle.EditMarcasherramientasLabel_nombreMarcaherramienta}" for="nombreMarcaherramienta" />
+                    <h:inputText id="nombreMarcaherramienta" value="#{marcasherramientasController.selected.nombreMarcaherramienta}" title="#{bundle.EditMarcasherramientasTitle_nombreMarcaherramienta}" required="true" requiredMessage="#{bundle.EditMarcasherramientasRequiredMessage_nombreMarcaherramienta}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{marcasherramientasController.update}" value="#{bundle.EditMarcasherramientasSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditMarcasherramientasViewLink}"/>
+                <br />
+                <h:commandLink action="#{marcasherramientasController.prepareList}" value="#{bundle.EditMarcasherramientasShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditMarcasherramientasIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

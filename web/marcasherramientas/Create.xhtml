@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateMarcasherramientasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateMarcasherramientasLabel_idMarcasHerramientas}" for="idMarcasHerramientas" />
+                    <h:inputText id="idMarcasHerramientas" value="#{marcasherramientasController.selected.idMarcasHerramientas}" title="#{bundle.CreateMarcasherramientasTitle_idMarcasHerramientas}" required="true" requiredMessage="#{bundle.CreateMarcasherramientasRequiredMessage_idMarcasHerramientas}"/>
+                    <h:outputLabel value="#{bundle.CreateMarcasherramientasLabel_nombreMarcaherramienta}" for="nombreMarcaherramienta" />
+                    <h:inputText id="nombreMarcaherramienta" value="#{marcasherramientasController.selected.nombreMarcaherramienta}" title="#{bundle.CreateMarcasherramientasTitle_nombreMarcaherramienta}" required="true" requiredMessage="#{bundle.CreateMarcasherramientasRequiredMessage_nombreMarcaherramienta}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{marcasherramientasController.create}" value="#{bundle.CreateMarcasherramientasSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{marcasherramientasController.prepareList}" value="#{bundle.CreateMarcasherramientasShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateMarcasherramientasIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

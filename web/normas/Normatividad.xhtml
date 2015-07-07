@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Comité de Mantenimiento"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <h:panelGrid columns="1">
+                    <p:tabMenu activeIndex="#{tabMenuController.index}">
+                        <p:menuitem value="Inicio" url="/faces/Inicio.xhtml" icon="ui-icon-home">
+                            <f:param name="index" value="0" />
+                        </p:menuitem>
+                        <p:menuitem value="Repuestos" url="/faces/repuestosxempresas/Repuestos.xhtml" icon="ui-icon-suitcase">
+                            <f:param name="index" value="1" />
+                        </p:menuitem>
+                        <p:menuitem value="Herramientas" url="/faces/herramientasxempcomite/herramientas.xhtml" icon="ui-icon-wrench">
+                            <f:param name="index" value="2" />
+                        </p:menuitem>
+                        <p:menuitem value="Directorio Miembros" url="/faces/usuarios/DirMiembros.xhtml" icon="ui-icon-contact"  >
+                            <f:param name="index" value="3" />
+                        </p:menuitem>
+                        <p:menuitem value="Directorio Proveedores" url="/faces/usuarios/DirProveedores.xhtml"  icon="ui-icon-contact">
+                            <f:param name="index" value="4" />
+                        </p:menuitem>
+                        <p:menuitem value="Servicios" url="/faces/servicios/ListServicios.xhtml" icon="ui-icon-person">
+                            <f:param name="index" value="5" />
+                        </p:menuitem>
+                        <p:menuitem value="Normas" url="/faces/normas/Normatividad.xhtml" icon="ui-icon-document">
+                            <f:param name="index" value="6" />
+                        </p:menuitem>
+                    </p:tabMenu>
+                 </h:panelGrid>
+                <p:panel header="Normatividad">
+               <p:dataTable value="#{normasController.items}" var="item" 
+                         rows="5"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+                       
+                        <p:column headerText="Ente emisor">
+                            <h:outputText value="#{item.entidadreguladoraNorma}"/>
+                        </p:column>
+                       
+                        <p:column headerText="Norma">
+                            <h:outputText value="#{item.nombreNorma}"/>
+                        </p:column>
+                        
+                         <p:column headerText="Numeral">
+                            <h:outputText value="#{item.codigoNorma}"/>
+                        </p:column>
+                         
+                        <p:column headerText="Descripción">
+                            <h:outputText value="#{item.descripcionNorma}"/>
+                        </p:column>
+                                          
+                        <p:column style="width:24px">
+                            <h:commandLink action="#{normasController.prepareView}" styleClass="ui-icon ui-icon-search"/>
+                            
+                        </p:column> 
+                        <p:column style="width:24px">
+                            <h:commandLink action="#{normasController.prepareEdit}" styleClass="ui-icon ui-icon-pencil"/>
+                            
+                        </p:column>  
+                        <p:column style="width:24px">
+                            <h:commandLink action="#{normasController.destroy}" styleClass="ui-icon ui-icon-trash"/>
+                        </p:column>
+                    </p:dataTable>
+                </p:panel>
+                <br />
+                 <p:commandButton value="Añadir nueva norma" ajax="false" actionListener="#{fileUploadView.upload}" disabled="false" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
+

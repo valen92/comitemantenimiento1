@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Comité de mantenimiento"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+
+            <h:form>
+                <h:panelGrid columns="1">
+                    <p:tabMenu activeIndex="#{tabMenuController.index}">
+                        <p:menuitem value="Inicio" url="http://localhost:8080/comitemantenimiento/faces/InicioMiembroComite.xhtml" icon="ui-icon-home">
+                            <f:param name="index" value="0" />
+                        </p:menuitem>
+                        <p:menuitem value="Mi Perfil" url="http://localhost:8080/comitemantenimiento/faces/perfil/MiembrodelComite.xhtml" icon="ui-icon-person">
+                            <f:param name="index" value="1" />
+                        </p:menuitem>
+
+                        <p:menuitem value="Directorio de Empresas" url="http://localhost:8080/comitemantenimiento/faces/usuarios/DirMiembrosUsuMC.xhtml" icon="ui-icon-contact"  >
+                            <f:param name="index" value="2" />
+                        </p:menuitem>
+                        <p:menuitem value="Dierectorio de Empresas Asociadas" url="http://localhost:8080/comitemantenimiento/faces/usuarios/DirEmpasociadasUsuMC.xhtml"  icon="ui-icon-contact">
+                            <f:param name="index" value="3" />
+                        </p:menuitem>
+                    </p:tabMenu> 
+                </h:panelGrid>
+                <p:panel header="Editar mi perfil">
+                    <h:panelGrid columns="2">
+
+                        <h:outputLabel value="Número de contrato:" for="n" />
+                        <h:inputText id="nitEmpresa" value="#{empresasController.selected.nitEmpresa}" title="#{bundle.EditEmpresasTitle_nitEmpresa}" />
+                        <h:outputLabel value="Ciudad:" for="fkidCiudad" />
+                        <h:selectOneMenu id="fkidCiudad" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.EditEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
+                            <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="Correo electrónico:" for="n" />
+                        <h:inputText id="nitEmpresa" value="#{empresasController.selected.nitEmpresa}" title="#{bundle.EditEmpresasTitle_nitEmpresa}" />
+                         <p:outputLabel for="console" value="Estado:" />
+                        <p:selectOneRadio id="console" value="#{empresasController.selected.estadoEmpresa}">
+                            <f:selectItem itemLabel="Activo" itemValue="Activo" />
+                            <f:selectItem itemLabel="Inactivo" itemValue="Inactivo" />
+                        </p:selectOneRadio>
+                        <h:outputLabel value="Móvil:" for="n" />
+                        <h:inputText id="nitEmpresa" value="#{empresasController.selected.nitEmpresa}" title="#{bundle.EditEmpresasTitle_nitEmpresa}" />
+                        <h:outputLabel value="Cargo:" for="n" />
+                        <h:inputText id="nitEmpresa" value="#{empresasController.selected.nitEmpresa}" title="#{bundle.EditEmpresasTitle_nitEmpresa}" />
+                       <h:outputLabel value="Tipo de servicio:" for="fkidCiudad" />
+                        <h:selectOneMenu id="fkidCiudad" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.EditEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
+                            <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="Fecha de ingreso:" for="fecingEmpresa" />
+                        <p:calendar id="fecingEmpresa" value="#{empresasController.selected.fecingEmpresa}" title="#{bundle.EditEmpresasTitle_fecingEmpresa}" pattern="dd-MM-yyyy">
+                        </p:calendar>
+                        
+                        
+                          
+
+
+
+
+
+
+
+
+                        
+                         
+                        <br />
+                        <p:growl id="growl" life="2000" />    
+                        <p:commandButton value="Aceptar" id="Guardar" update="growl" actionListener="#{empresasController.create}" styleClass="ui-priority-primary"/>
+                        <p:commandButton value="Cancelar" id="Guardar" update="growl" actionListener="#{empresasController.create}" styleClass="ui-priority-primary"/>
+                        <p:commandButton value="Cerrar Sesion" id="Guardar" update="growl" actionListener="#{empresasController.create}" styleClass="ui-priority-primary"/>
+                    </h:panelGrid>  
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateRepuestosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateRepuestosLabel_idRepuestos}" for="idRepuestos" />
+                    <h:inputText id="idRepuestos" value="#{repuestosController.selected.idRepuestos}" title="#{bundle.CreateRepuestosTitle_idRepuestos}" required="true" requiredMessage="#{bundle.CreateRepuestosRequiredMessage_idRepuestos}"/>
+                    <h:outputLabel value="#{bundle.CreateRepuestosLabel_nombreRepuesto}" for="nombreRepuesto" />
+                    <h:inputText id="nombreRepuesto" value="#{repuestosController.selected.nombreRepuesto}" title="#{bundle.CreateRepuestosTitle_nombreRepuesto}" required="true" requiredMessage="#{bundle.CreateRepuestosRequiredMessage_nombreRepuesto}"/>
+                    <h:outputLabel value="#{bundle.CreateRepuestosLabel_fkidLineaRepuestos}" for="fkidLineaRepuestos" />
+                    <h:selectOneMenu id="fkidLineaRepuestos" value="#{repuestosController.selected.fkidLineaRepuestos}" title="#{bundle.CreateRepuestosTitle_fkidLineaRepuestos}" required="true" requiredMessage="#{bundle.CreateRepuestosRequiredMessage_fkidLineaRepuestos}">
+                        <f:selectItems value="#{linearepuestosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateRepuestosLabel_fkidClaseRepuestos}" for="fkidClaseRepuestos" />
+                    <h:selectOneMenu id="fkidClaseRepuestos" value="#{repuestosController.selected.fkidClaseRepuestos}" title="#{bundle.CreateRepuestosTitle_fkidClaseRepuestos}" required="true" requiredMessage="#{bundle.CreateRepuestosRequiredMessage_fkidClaseRepuestos}">
+                        <f:selectItems value="#{claserepuestosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{repuestosController.create}" value="#{bundle.CreateRepuestosSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{repuestosController.prepareList}" value="#{bundle.CreateRepuestosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateRepuestosIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

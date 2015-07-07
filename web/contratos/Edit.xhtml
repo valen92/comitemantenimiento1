@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditContratosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditContratosLabel_idContratos}" for="idContratos" />
+                    <h:inputText id="idContratos" value="#{contratosController.selected.idContratos}" title="#{bundle.EditContratosTitle_idContratos}" required="true" requiredMessage="#{bundle.EditContratosRequiredMessage_idContratos}"/>
+                    <h:outputLabel value="#{bundle.EditContratosLabel_numeroContrato}" for="numeroContrato" />
+                    <h:inputText id="numeroContrato" value="#{contratosController.selected.numeroContrato}" title="#{bundle.EditContratosTitle_numeroContrato}" required="true" requiredMessage="#{bundle.EditContratosRequiredMessage_numeroContrato}"/>
+                    <h:outputLabel value="#{bundle.EditContratosLabel_fecinicioContrato}" for="fecinicioContrato" />
+                    <h:inputText id="fecinicioContrato" value="#{contratosController.selected.fecinicioContrato}" title="#{bundle.EditContratosTitle_fecinicioContrato}" required="true" requiredMessage="#{bundle.EditContratosRequiredMessage_fecinicioContrato}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditContratosLabel_fecfinContrato}" for="fecfinContrato" />
+                    <h:inputText id="fecfinContrato" value="#{contratosController.selected.fecfinContrato}" title="#{bundle.EditContratosTitle_fecfinContrato}" required="true" requiredMessage="#{bundle.EditContratosRequiredMessage_fecfinContrato}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditContratosLabel_estadoContrato}" for="estadoContrato" />
+                    <h:inputText id="estadoContrato" value="#{contratosController.selected.estadoContrato}" title="#{bundle.EditContratosTitle_estadoContrato}" required="true" requiredMessage="#{bundle.EditContratosRequiredMessage_estadoContrato}"/>
+                    <h:outputLabel value="#{bundle.EditContratosLabel_descripcionContrato}" for="descripcionContrato" />
+                    <h:inputText id="descripcionContrato" value="#{contratosController.selected.descripcionContrato}" title="#{bundle.EditContratosTitle_descripcionContrato}" required="true" requiredMessage="#{bundle.EditContratosRequiredMessage_descripcionContrato}"/>
+                    <h:outputLabel value="#{bundle.EditContratosLabel_fkidEmpresas}" for="fkidEmpresas" />
+                    <h:selectOneMenu id="fkidEmpresas" value="#{contratosController.selected.fkidEmpresas}" title="#{bundle.EditContratosTitle_fkidEmpresas}" required="true" requiredMessage="#{bundle.EditContratosRequiredMessage_fkidEmpresas}">
+                        <f:selectItems value="#{empresasController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{contratosController.update}" value="#{bundle.EditContratosSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditContratosViewLink}"/>
+                <br />
+                <h:commandLink action="#{contratosController.prepareList}" value="#{bundle.EditContratosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditContratosIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

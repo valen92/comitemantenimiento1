@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListHerramientasxempcomiteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListHerramientasxempcomiteEmpty}" rendered="#{herramientasxempcomiteController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{herramientasxempcomiteController.items.rowCount > 0}">
+                    <h:outputText value="#{herramientasxempcomiteController.pagination.pageFirstItem + 1}..#{herramientasxempcomiteController.pagination.pageLastItem + 1}/#{herramientasxempcomiteController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{herramientasxempcomiteController.previous}" value="#{bundle.Previous} #{herramientasxempcomiteController.pagination.pageSize}" rendered="#{herramientasxempcomiteController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{herramientasxempcomiteController.next}" value="#{bundle.Next} #{herramientasxempcomiteController.pagination.pageSize}" rendered="#{herramientasxempcomiteController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{herramientasxempcomiteController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHerramientasxempcomiteTitle_idHerramientasxEmpComite}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idHerramientasxEmpComite}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHerramientasxempcomiteTitle_descripcionHerramempcomite}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcionHerramempcomite}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHerramientasxempcomiteTitle_disponibilidadHerramempcomite}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.disponibilidadHerramempcomite}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHerramientasxempcomiteTitle_codigoHerramempcomite}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoHerramempcomite}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHerramientasxempcomiteTitle_estadoHerramempcomite}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.estadoHerramempcomite}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHerramientasxempcomiteTitle_cantidadHerramempcomite}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cantidadHerramempcomite}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHerramientasxempcomiteTitle_precioHerramempcomite}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.precioHerramempcomite}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHerramientasxempcomiteTitle_fkidMarcasHerramientas}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fkidMarcasHerramientas}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHerramientasxempcomiteTitle_fkidUsuarios}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fkidUsuarios}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHerramientasxempcomiteTitle_fkidEmpresas}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fkidEmpresas}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHerramientasxempcomiteTitle_fkidHerramientas}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fkidHerramientas}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{herramientasxempcomiteController.prepareView}" value="#{bundle.ListHerramientasxempcomiteViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{herramientasxempcomiteController.prepareEdit}" value="#{bundle.ListHerramientasxempcomiteEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{herramientasxempcomiteController.destroy}" value="#{bundle.ListHerramientasxempcomiteDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{herramientasxempcomiteController.prepareCreate}" value="#{bundle.ListHerramientasxempcomiteCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListHerramientasxempcomiteIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

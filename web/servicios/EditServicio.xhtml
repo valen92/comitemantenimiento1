@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Comité de mantenimiento"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <h:panelGrid columns="1">
+                    <p:tabMenu activeIndex="#{tabMenuController.index}">
+                        <p:menuitem value="Inicio" url="http://localhost:8080/comitemantenimiento/faces/Inicio.xhtml" icon="ui-icon-home">
+                            <f:param name="index" value="0" />
+                        </p:menuitem>
+                        <p:menuitem value="Repuestos" url="http://localhost:8080/comitemantenimiento/faces/repuestosxempresas/Repuestos.xhtml" icon="ui-icon-suitcase">
+                            <f:param name="index" value="1" />
+                        </p:menuitem>
+                        <p:menuitem value="Herramientas" url="http://localhost:8080/comitemantenimiento/faces/herramientasxempcomite/herramientas.xhtml" icon="ui-icon-wrench">
+                            <f:param name="index" value="2" />
+                        </p:menuitem>
+                        <p:menuitem value="Directorio Miembros" url="http://localhost:8080/comitemantenimiento/faces/usuarios/DirMiembros.xhtml" icon="ui-icon-contact"  >
+                            <f:param name="index" value="3" />
+                        </p:menuitem>
+                        <p:menuitem value="Directorio proveedores" url="http://localhost:8080/comitemantenimiento/faces/usuarios/DirProveedores.xhtml"  icon="ui-icon-contact">
+                            <f:param name="index" value="4" />
+                        </p:menuitem>
+                        <p:menuitem value="Servicios" url="http://localhost:8080/comitemantenimiento/faces/servicios/ListServicios.xhtml" icon="ui-icon-person">
+                            <f:param name="index" value="5" />
+                        </p:menuitem>
+                        <p:menuitem value="Normas" url="http://localhost:8080/comitemantenimiento/faces/normas/Normatividad.xhtml" icon="ui-icon-document">
+                            <f:param name="index" value="6" />
+                        </p:menuitem>
+                    </p:tabMenu>
+                </h:panelGrid>
+
+                <p:panel header="Editar Servicio">
+                    <h:panelGrid columns="2">
+
+                        <h:outputLabel value="Nombre:"  />
+                        <h:inputText id="nombreServicio" value="#{serviciosController.selected.nombreServicio}" title="#{bundle.EditServiciosTitle_nombreServicio}" required="true" requiredMessage="#{bundle.EditServiciosRequiredMessage_nombreServicio}"/>
+                        <h:outputLabel value="Descripción:"  />
+                        <h:inputText id="descripcionServicio" value="#{serviciosController.selected.descripcionServicio}" title="#{bundle.EditServiciosTitle_descripcionServicio}" required="true" requiredMessage="#{bundle.EditServiciosRequiredMessage_descripcionServicio}"/>
+                        <h:outputLabel value="Estado:" for="estadoServicio" />
+                        <h:inputText id="estadoServicio" value="#{serviciosController.selected.estadoServicio}" title="#{bundle.EditServiciosTitle_estadoServicio}" required="true" requiredMessage="#{bundle.EditServiciosRequiredMessage_estadoServicio}"/>
+
+                        <h:outputLabel value="Fecha:"  />
+                        <p:calendar id="fechaServicio" value="#{serviciosController.selected.fechaServicio}" pattern="dd-MM-yyyy" title="#{bundle.EditServiciosTitle_fechaServicio}" required="true" requiredMessage="#{bundle.EditServiciosRequiredMessage_fechaServicio}">
+                            </p:calendar>
+
+                    </h:panelGrid>
+                    <p:growl id="growl" life="2000" />  
+                    <p:commandButton  id="aceptar" value="Guardar" update="growl" actionListener="#{serviciosController.update}" styleClass="ui-priority-primary" />
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

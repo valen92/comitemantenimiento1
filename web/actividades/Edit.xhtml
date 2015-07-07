@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditActividadesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditActividadesLabel_idActividad}" for="idActividad" />
+                    <h:inputText id="idActividad" value="#{actividadesController.selected.idActividad}" title="#{bundle.EditActividadesTitle_idActividad}" required="true" requiredMessage="#{bundle.EditActividadesRequiredMessage_idActividad}"/>
+                    <h:outputLabel value="#{bundle.EditActividadesLabel_numeroActividad}" for="numeroActividad" />
+                    <h:inputText id="numeroActividad" value="#{actividadesController.selected.numeroActividad}" title="#{bundle.EditActividadesTitle_numeroActividad}" required="true" requiredMessage="#{bundle.EditActividadesRequiredMessage_numeroActividad}"/>
+                    <h:outputLabel value="#{bundle.EditActividadesLabel_tituloActividad}" for="tituloActividad" />
+                    <h:inputText id="tituloActividad" value="#{actividadesController.selected.tituloActividad}" title="#{bundle.EditActividadesTitle_tituloActividad}" required="true" requiredMessage="#{bundle.EditActividadesRequiredMessage_tituloActividad}"/>
+                    <h:outputLabel value="#{bundle.EditActividadesLabel_descripcionActividad}" for="descripcionActividad" />
+                    <h:inputText id="descripcionActividad" value="#{actividadesController.selected.descripcionActividad}" title="#{bundle.EditActividadesTitle_descripcionActividad}" required="true" requiredMessage="#{bundle.EditActividadesRequiredMessage_descripcionActividad}"/>
+                    <h:outputLabel value="#{bundle.EditActividadesLabel_fecfirmaActividad}" for="fecfirmaActividad" />
+                    <h:inputText id="fecfirmaActividad" value="#{actividadesController.selected.fecfirmaActividad}" title="#{bundle.EditActividadesTitle_fecfirmaActividad}" required="true" requiredMessage="#{bundle.EditActividadesRequiredMessage_fecfirmaActividad}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditActividadesLabel_fecinicioActividad}" for="fecinicioActividad" />
+                    <h:inputText id="fecinicioActividad" value="#{actividadesController.selected.fecinicioActividad}" title="#{bundle.EditActividadesTitle_fecinicioActividad}" required="true" requiredMessage="#{bundle.EditActividadesRequiredMessage_fecinicioActividad}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditActividadesLabel_fecfinActividad}" for="fecfinActividad" />
+                    <h:inputText id="fecfinActividad" value="#{actividadesController.selected.fecfinActividad}" title="#{bundle.EditActividadesTitle_fecfinActividad}" required="true" requiredMessage="#{bundle.EditActividadesRequiredMessage_fecfinActividad}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditActividadesLabel_estadoActividad}" for="estadoActividad" />
+                    <h:inputText id="estadoActividad" value="#{actividadesController.selected.estadoActividad}" title="#{bundle.EditActividadesTitle_estadoActividad}" required="true" requiredMessage="#{bundle.EditActividadesRequiredMessage_estadoActividad}"/>
+                    <h:outputLabel value="#{bundle.EditActividadesLabel_fkidServiciosContrato}" for="fkidServiciosContrato" />
+                    <h:selectOneMenu id="fkidServiciosContrato" value="#{actividadesController.selected.fkidServiciosContrato}" title="#{bundle.EditActividadesTitle_fkidServiciosContrato}" required="true" requiredMessage="#{bundle.EditActividadesRequiredMessage_fkidServiciosContrato}">
+                        <f:selectItems value="#{servicioscontratoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{actividadesController.update}" value="#{bundle.EditActividadesSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditActividadesViewLink}"/>
+                <br />
+                <h:commandLink action="#{actividadesController.prepareList}" value="#{bundle.EditActividadesShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditActividadesIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

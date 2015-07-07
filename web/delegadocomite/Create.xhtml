@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateDelegadocomiteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateDelegadocomiteLabel_idDelegadoComite}" for="idDelegadoComite" />
+                    <h:inputText id="idDelegadoComite" value="#{delegadocomiteController.selected.idDelegadoComite}" title="#{bundle.CreateDelegadocomiteTitle_idDelegadoComite}" required="true" requiredMessage="#{bundle.CreateDelegadocomiteRequiredMessage_idDelegadoComite}"/>
+                    <h:outputLabel value="#{bundle.CreateDelegadocomiteLabel_estadoDelegadocomite}" for="estadoDelegadocomite" />
+                    <h:inputText id="estadoDelegadocomite" value="#{delegadocomiteController.selected.estadoDelegadocomite}" title="#{bundle.CreateDelegadocomiteTitle_estadoDelegadocomite}" required="true" requiredMessage="#{bundle.CreateDelegadocomiteRequiredMessage_estadoDelegadocomite}"/>
+                    <h:outputLabel value="#{bundle.CreateDelegadocomiteLabel_nombreDelegadocomite}" for="nombreDelegadocomite" />
+                    <h:inputText id="nombreDelegadocomite" value="#{delegadocomiteController.selected.nombreDelegadocomite}" title="#{bundle.CreateDelegadocomiteTitle_nombreDelegadocomite}" required="true" requiredMessage="#{bundle.CreateDelegadocomiteRequiredMessage_nombreDelegadocomite}"/>
+                    <h:outputLabel value="#{bundle.CreateDelegadocomiteLabel_telefonoDelegadocomite}" for="telefonoDelegadocomite" />
+                    <h:inputText id="telefonoDelegadocomite" value="#{delegadocomiteController.selected.telefonoDelegadocomite}" title="#{bundle.CreateDelegadocomiteTitle_telefonoDelegadocomite}" required="true" requiredMessage="#{bundle.CreateDelegadocomiteRequiredMessage_telefonoDelegadocomite}"/>
+                    <h:outputLabel value="#{bundle.CreateDelegadocomiteLabel_emailDelegadocomite}" for="emailDelegadocomite" />
+                    <h:inputText id="emailDelegadocomite" value="#{delegadocomiteController.selected.emailDelegadocomite}" title="#{bundle.CreateDelegadocomiteTitle_emailDelegadocomite}" required="true" requiredMessage="#{bundle.CreateDelegadocomiteRequiredMessage_emailDelegadocomite}"/>
+                    <h:outputLabel value="#{bundle.CreateDelegadocomiteLabel_movilDelegadocomite}" for="movilDelegadocomite" />
+                    <h:inputText id="movilDelegadocomite" value="#{delegadocomiteController.selected.movilDelegadocomite}" title="#{bundle.CreateDelegadocomiteTitle_movilDelegadocomite}" />
+                    <h:outputLabel value="#{bundle.CreateDelegadocomiteLabel_fkidEmpresas}" for="fkidEmpresas" />
+                    <h:selectOneMenu id="fkidEmpresas" value="#{delegadocomiteController.selected.fkidEmpresas}" title="#{bundle.CreateDelegadocomiteTitle_fkidEmpresas}" required="true" requiredMessage="#{bundle.CreateDelegadocomiteRequiredMessage_fkidEmpresas}">
+                        <f:selectItems value="#{empresasController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{delegadocomiteController.create}" value="#{bundle.CreateDelegadocomiteSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{delegadocomiteController.prepareList}" value="#{bundle.CreateDelegadocomiteShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateDelegadocomiteIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewContratosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewContratosLabel_idContratos}"/>
+                    <h:outputText value="#{contratosController.selected.idContratos}" title="#{bundle.ViewContratosTitle_idContratos}"/>
+                    <h:outputText value="#{bundle.ViewContratosLabel_numeroContrato}"/>
+                    <h:outputText value="#{contratosController.selected.numeroContrato}" title="#{bundle.ViewContratosTitle_numeroContrato}"/>
+                    <h:outputText value="#{bundle.ViewContratosLabel_fecinicioContrato}"/>
+                    <h:outputText value="#{contratosController.selected.fecinicioContrato}" title="#{bundle.ViewContratosTitle_fecinicioContrato}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewContratosLabel_fecfinContrato}"/>
+                    <h:outputText value="#{contratosController.selected.fecfinContrato}" title="#{bundle.ViewContratosTitle_fecfinContrato}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewContratosLabel_estadoContrato}"/>
+                    <h:outputText value="#{contratosController.selected.estadoContrato}" title="#{bundle.ViewContratosTitle_estadoContrato}"/>
+                    <h:outputText value="#{bundle.ViewContratosLabel_descripcionContrato}"/>
+                    <h:outputText value="#{contratosController.selected.descripcionContrato}" title="#{bundle.ViewContratosTitle_descripcionContrato}"/>
+                    <h:outputText value="#{bundle.ViewContratosLabel_fkidEmpresas}"/>
+                    <h:outputText value="#{contratosController.selected.fkidEmpresas}" title="#{bundle.ViewContratosTitle_fkidEmpresas}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{contratosController.destroyAndView}" value="#{bundle.ViewContratosDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewContratosEditLink}"/>
+                <br />
+                <h:commandLink action="#{contratosController.prepareCreate}" value="#{bundle.ViewContratosCreateLink}" />
+                <br />
+                <h:commandLink action="#{contratosController.prepareList}" value="#{bundle.ViewContratosShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewContratosIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
