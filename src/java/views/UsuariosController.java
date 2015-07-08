@@ -150,7 +150,7 @@ public class UsuariosController implements Serializable {
             }
   
         } else {
-                FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Alerta",  "Usuario inexistente. Intentelo de nuevo");  
+                FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Te amo",  "Usuario inexistente. Intentelo de nuevo");  
                 RequestContext.getCurrentInstance().showMessageInDialog(message);
         }
 
