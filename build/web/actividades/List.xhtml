@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListActividadesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListActividadesEmpty}" rendered="#{actividadesController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{actividadesController.items.rowCount > 0}">
+                    <h:outputText value="#{actividadesController.pagination.pageFirstItem + 1}..#{actividadesController.pagination.pageLastItem + 1}/#{actividadesController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{actividadesController.previous}" value="#{bundle.Previous} #{actividadesController.pagination.pageSize}" rendered="#{actividadesController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{actividadesController.next}" value="#{bundle.Next} #{actividadesController.pagination.pageSize}" rendered="#{actividadesController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{actividadesController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListActividadesTitle_idActividad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idActividad}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListActividadesTitle_numeroActividad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numeroActividad}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListActividadesTitle_tituloActividad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tituloActividad}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListActividadesTitle_descripcionActividad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcionActividad}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListActividadesTitle_fecfirmaActividad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fecfirmaActividad}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListActividadesTitle_fecinicioActividad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fecinicioActividad}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListActividadesTitle_fecfinActividad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fecfinActividad}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListActividadesTitle_estadoActividad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.estadoActividad}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListActividadesTitle_fkidServiciosContrato}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fkidServiciosContrato}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{actividadesController.prepareView}" value="#{bundle.ListActividadesViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{actividadesController.prepareEdit}" value="#{bundle.ListActividadesEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{actividadesController.destroy}" value="#{bundle.ListActividadesDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{actividadesController.prepareCreate}" value="#{bundle.ListActividadesCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListActividadesIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditRepuestosxempresasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditRepuestosxempresasLabel_idRepuestosxEmpresas}" for="idRepuestosxEmpresas" />
+                    <h:inputText id="idRepuestosxEmpresas" value="#{repuestosxempresasController.selected.idRepuestosxEmpresas}" title="#{bundle.EditRepuestosxempresasTitle_idRepuestosxEmpresas}" required="true" requiredMessage="#{bundle.EditRepuestosxempresasRequiredMessage_idRepuestosxEmpresas}"/>
+                    <h:outputLabel value="#{bundle.EditRepuestosxempresasLabel_estadoRepuestoempresa}" for="estadoRepuestoempresa" />
+                    <h:inputText id="estadoRepuestoempresa" value="#{repuestosxempresasController.selected.estadoRepuestoempresa}" title="#{bundle.EditRepuestosxempresasTitle_estadoRepuestoempresa}" required="true" requiredMessage="#{bundle.EditRepuestosxempresasRequiredMessage_estadoRepuestoempresa}"/>
+                    <h:outputLabel value="#{bundle.EditRepuestosxempresasLabel_codigoRepuestoempresa}" for="codigoRepuestoempresa" />
+                    <h:inputText id="codigoRepuestoempresa" value="#{repuestosxempresasController.selected.codigoRepuestoempresa}" title="#{bundle.EditRepuestosxempresasTitle_codigoRepuestoempresa}" required="true" requiredMessage="#{bundle.EditRepuestosxempresasRequiredMessage_codigoRepuestoempresa}"/>
+                    <h:outputLabel value="#{bundle.EditRepuestosxempresasLabel_cantidadRepuestoempresa}" for="cantidadRepuestoempresa" />
+                    <h:inputText id="cantidadRepuestoempresa" value="#{repuestosxempresasController.selected.cantidadRepuestoempresa}" title="#{bundle.EditRepuestosxempresasTitle_cantidadRepuestoempresa}" required="true" requiredMessage="#{bundle.EditRepuestosxempresasRequiredMessage_cantidadRepuestoempresa}"/>
+                    <h:outputLabel value="#{bundle.EditRepuestosxempresasLabel_precioRepuestoepresa}" for="precioRepuestoepresa" />
+                    <h:inputText id="precioRepuestoepresa" value="#{repuestosxempresasController.selected.precioRepuestoepresa}" title="#{bundle.EditRepuestosxempresasTitle_precioRepuestoepresa}" required="true" requiredMessage="#{bundle.EditRepuestosxempresasRequiredMessage_precioRepuestoepresa}"/>
+                    <h:outputLabel value="#{bundle.EditRepuestosxempresasLabel_descripcionRepuestoempresa}" for="descripcionRepuestoempresa" />
+                    <h:inputText id="descripcionRepuestoempresa" value="#{repuestosxempresasController.selected.descripcionRepuestoempresa}" title="#{bundle.EditRepuestosxempresasTitle_descripcionRepuestoempresa}" required="true" requiredMessage="#{bundle.EditRepuestosxempresasRequiredMessage_descripcionRepuestoempresa}"/>
+                    <h:outputLabel value="#{bundle.EditRepuestosxempresasLabel_fkidRepuestos}" for="fkidRepuestos" />
+                    <h:selectOneMenu id="fkidRepuestos" value="#{repuestosxempresasController.selected.fkidRepuestos}" title="#{bundle.EditRepuestosxempresasTitle_fkidRepuestos}" required="true" requiredMessage="#{bundle.EditRepuestosxempresasRequiredMessage_fkidRepuestos}">
+                        <f:selectItems value="#{repuestosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditRepuestosxempresasLabel_fkidUsuarios}" for="fkidUsuarios" />
+                    <h:selectOneMenu id="fkidUsuarios" value="#{repuestosxempresasController.selected.fkidUsuarios}" title="#{bundle.EditRepuestosxempresasTitle_fkidUsuarios}" required="true" requiredMessage="#{bundle.EditRepuestosxempresasRequiredMessage_fkidUsuarios}">
+                        <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditRepuestosxempresasLabel_fkidEmpresas}" for="fkidEmpresas" />
+                    <h:selectOneMenu id="fkidEmpresas" value="#{repuestosxempresasController.selected.fkidEmpresas}" title="#{bundle.EditRepuestosxempresasTitle_fkidEmpresas}" required="true" requiredMessage="#{bundle.EditRepuestosxempresasRequiredMessage_fkidEmpresas}">
+                        <f:selectItems value="#{empresasController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditRepuestosxempresasLabel_fkidMarcasRepuestos}" for="fkidMarcasRepuestos" />
+                    <h:selectOneMenu id="fkidMarcasRepuestos" value="#{repuestosxempresasController.selected.fkidMarcasRepuestos}" title="#{bundle.EditRepuestosxempresasTitle_fkidMarcasRepuestos}" required="true" requiredMessage="#{bundle.EditRepuestosxempresasRequiredMessage_fkidMarcasRepuestos}">
+                        <f:selectItems value="#{marcasrepuestosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{repuestosxempresasController.update}" value="#{bundle.EditRepuestosxempresasSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditRepuestosxempresasViewLink}"/>
+                <br />
+                <h:commandLink action="#{repuestosxempresasController.prepareList}" value="#{bundle.EditRepuestosxempresasShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditRepuestosxempresasIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

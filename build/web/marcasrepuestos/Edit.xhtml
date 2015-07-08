@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditMarcasrepuestosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditMarcasrepuestosLabel_idMarcasRepuestos}" for="idMarcasRepuestos" />
+                    <h:inputText id="idMarcasRepuestos" value="#{marcasrepuestosController.selected.idMarcasRepuestos}" title="#{bundle.EditMarcasrepuestosTitle_idMarcasRepuestos}" required="true" requiredMessage="#{bundle.EditMarcasrepuestosRequiredMessage_idMarcasRepuestos}"/>
+                    <h:outputLabel value="#{bundle.EditMarcasrepuestosLabel_codigoMarcarepuesto}" for="codigoMarcarepuesto" />
+                    <h:inputText id="codigoMarcarepuesto" value="#{marcasrepuestosController.selected.codigoMarcarepuesto}" title="#{bundle.EditMarcasrepuestosTitle_codigoMarcarepuesto}" required="true" requiredMessage="#{bundle.EditMarcasrepuestosRequiredMessage_codigoMarcarepuesto}"/>
+                    <h:outputLabel value="#{bundle.EditMarcasrepuestosLabel_nombreMarcarepuesto}" for="nombreMarcarepuesto" />
+                    <h:inputText id="nombreMarcarepuesto" value="#{marcasrepuestosController.selected.nombreMarcarepuesto}" title="#{bundle.EditMarcasrepuestosTitle_nombreMarcarepuesto}" required="true" requiredMessage="#{bundle.EditMarcasrepuestosRequiredMessage_nombreMarcarepuesto}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{marcasrepuestosController.update}" value="#{bundle.EditMarcasrepuestosSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditMarcasrepuestosViewLink}"/>
+                <br />
+                <h:commandLink action="#{marcasrepuestosController.prepareList}" value="#{bundle.EditMarcasrepuestosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditMarcasrepuestosIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

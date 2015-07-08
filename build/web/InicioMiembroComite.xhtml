@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Proveedores de Servicios"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <h:panelGrid columns="1">
+                    <p:tabMenu activeIndex="#{tabMenuController.index}">
+                        <p:menuitem value="Inicio" url="/faces/InicioMiembroComite.xhtml" icon="ui-icon-home">
+                            <f:param name="index" value="0" />
+                        </p:menuitem>
+                        <p:menuitem value="Repuestos" url="/faces/repuestosxempresas/RepuestosMC.xhtml" icon="ui-icon-person">
+                            <f:param name="index" value="1" />
+                        </p:menuitem>
+                        <p:menuitem value="Herramientas" url="/faces/herramientasxempcomite/MiembrodelComite.xhtml" icon="ui-icon-person">
+                            <f:param name="index" value="1" />
+                        </p:menuitem>
+                       
+                        <p:menuitem value="Directorio miembros" url="/faces/usuarios/DirMiembrosUsuMC.xhtml" icon="ui-icon-contact"  >
+                            <f:param name="index" value="2" /> 
+                        </p:menuitem>
+                        <p:menuitem value="Directorio proveedores" url="/faces/usuarios/DirMiembrosUsuP.xhtml"  icon="ui-icon-contact">
+                            <f:param name="index" value="3" />
+                        </p:menuitem>
+                        <p:menuitem value="Normas" url="/faces/normas/Normatividad.xhtml"  icon="ui-icon-contact">
+                            <f:param name="index" value="3" />
+                        </p:menuitem>
+                        
+                    </p:tabMenu>              
+                </h:panelGrid>
+                  
+                <p:panel header="Actividades vigentes">
+                    
+                    <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                                         rows="5">
+                                         
+                         <p:column headerText="Titulo actividad">
+                                     <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                    
+                          </p:column>
+                         <p:column headerText="Empresa">
+                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                    
+                          </p:column>
+                                     
+                    </p:dataTable> 
+                </p:panel>  
+                <br />
+                <p:commandButton value="Agregar actividad" ajax="false" actionListener="#{actividadesController.prepareCreate}" disabled="false" />
+                
+                <p:commandButton value="Eliminar actividad" ajax="false" actionListener="#{fileUploadView.upload}" disabled="false" />
+                <br />
+                <br />
+                
+                <p:panel header="Proveedores de servicios">
+                    
+                    <p:tabView orientation="left">
+                        <p:tab title="Trabajos  mecánicos">
+                            <h:panelGrid columns="2">
+                              <h:outputLabel value="Empresas asociadas:" for="fkidCiudad" />
+                              <h:selectOneMenu id="fkidCiudad1" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.ViewEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
+                              <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
+                              </h:selectOneMenu>
+                              <h:outputLabel value="Empresas contratadas:" for="fkidCiudad" />
+                              <h:selectOneMenu id="fkidCiudad2" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.ViewEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
+                              <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
+                              </h:selectOneMenu>
+                              
+                            </h:panelGrid>
+                            <br />
+                            <h:outputText value="Empresas asociadas actualmente" />
+                            <br />
+                            <br />
+                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                                         rows="5"
+                                         paginator="true"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="5,10,15">
+
+                                <p:column headerText="Empresa">
+                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                </p:column>
+
+                                <p:column headerText="Contacto">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+
+                                <p:column headerText="Servicio">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+                                
+                                <p:column headerText="Icono buscar">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+
+                                
+                            </p:dataTable>
+                            <br />
+                            <br />
+                            <h:outputText value="Empresas contratadas con frecuencia" />
+                            <br />
+                            <br />
+                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                                         rows="5"
+                                         paginator="true"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="5,10,15">
+
+                                <p:column headerText="Empresa">
+                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                </p:column>
+
+                                <p:column headerText="Contacto">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+
+                                <p:column headerText="Servicio">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+                                
+                                <p:column headerText="Icono buscar">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+
+                                
+                            </p:dataTable>
+                        </p:tab>
+                        <p:tab title="Civiles-Locativos">
+                            <h:panelGrid columns="2">
+                              <h:outputLabel value="Empresas asociadas:" for="fkidCiudad" />
+                              <h:selectOneMenu id="fkidCiudad3" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.ViewEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
+                              <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
+                              </h:selectOneMenu>
+                              <h:outputLabel value="Empresas contratadas:" for="fkidCiudad" />
+                              <h:selectOneMenu id="fkidCiudad4" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.ViewEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
+                              <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
+                              </h:selectOneMenu>
+                           </h:panelGrid>
+                            <br />
+                            <h:outputText value="Empresas asociadas actualmente" />
+                            <br />
+                            <br />
+                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                                         rows="5"
+                                         paginator="true"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="5,10,15">
+
+                                <p:column headerText="Empresa">
+                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                </p:column>
+
+                                <p:column headerText="Contacto">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+
+                                <p:column headerText="Servicio">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+                                
+                                 <p:column headerText="Icono buscar">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+
+                            </p:dataTable>
+                            <br />
+                            <br />
+                            <h:outputText value="Empresas contratadas con frecuencia" />
+                            <br />
+                            <br />
+                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                                         rows="5"
+                                         paginator="true"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="5,10,15">
+
+                                <p:column headerText="Empresa">
+                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                </p:column>
+
+                                <p:column headerText="Contacto">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+
+                                <p:column headerText="Servicio">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+                                
+                                <p:column headerText="Icono buscar">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+
+                                
+                            </p:dataTable>
+                        </p:tab>
+                        <p:tab title="Eléctricos">
+                            <h:panelGrid columns="2">
+                              <h:outputLabel value="Empresas asociadas:" for="fkidCiudad" />
+                              <h:selectOneMenu id="fkidCiudad5" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.ViewEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
+                              <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
+                              </h:selectOneMenu>
+                              <h:outputLabel value="Empresas contratadas:" for="fkidCiudad" />
+                              <h:selectOneMenu id="fkidCiudad6" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.ViewEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
+                              <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
+                              </h:selectOneMenu>
+                           </h:panelGrid>
+                            <br />
+                            <h:outputText value="Empresas asociadas actualmente" />
+                            <br />
+                            <br />
+                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                                         rows="5"
+                                         paginator="true"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="5,10,15">
+
+                                <p:column headerText="Empresa">
+                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                </p:column>
+
+                                <p:column headerText="Contacto">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+                                
+                                <p:column headerText="Servicio">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+                                
+                                <p:column headerText="Icono buscar">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+
+                                                                                
+                            </p:dataTable>
+                            <br />
+                            <br />
+                            <h:outputText value="Empresas contratadas con frecuencia" />
+                            <br />
+                            <br />
+                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                                         rows="5"
+                                         paginator="true"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="5,10,15">
+
+                                <p:column headerText="Empresa">
+                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                </p:column>
+
+                                <p:column headerText="Contacto">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+
+                                <p:column headerText="Servicio">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+                                
+                                <p:column headerText="Icono buscar">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+
+                                
+                            </p:dataTable>
+                        </p:tab>
+                        <p:tab title="Limpieza y oficios varios">
+                            <h:panelGrid columns="2">
+                              <h:outputLabel value="Empresas asociadas:" for="fkidCiudad" />
+                              <h:selectOneMenu id="fkidCiudad7" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.ViewEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
+                              <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
+                              </h:selectOneMenu>
+                              <h:outputLabel value="Empresas contratadas:" for="fkidCiudad" />
+                              <h:selectOneMenu id="fkidCiudad8" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.ViewEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
+                              <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
+                              </h:selectOneMenu>
+                           </h:panelGrid>
+                            <br />
+                            <h:outputText value="Empresas asociadas actualmente" />
+                            <br />
+                            <br />
+                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                                         rows="5"
+                                         paginator="true"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="5,10,15">
+
+                                <p:column headerText="Empresa">
+                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                </p:column>
+
+                                <p:column headerText="Contacto">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+                                
+                                <p:column headerText="Servicio">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+                                
+                                <p:column headerText="Icono buscar">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+                                
+                            </p:dataTable>
+                            <br />
+                            <br />
+                            <h:outputText value="Empresas contratadas con frecuencia" />
+                            <br />
+                            <br />
+                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                                         rows="5"
+                                         paginator="true"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="5,10,15">
+
+                                <p:column headerText="Empresa">
+                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                </p:column>
+
+                                <p:column headerText="Contacto">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+
+                                <p:column headerText="Servicio">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+                                
+                                <p:column headerText="Icono buscar">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+
+                                
+                            </p:dataTable>
+                        </p:tab>
+                        <p:tab title="Mantenimiento preventivo y predictivo">
+                            <h:panelGrid columns="2">
+                              <h:outputLabel value="Empresas asociadas:" for="fkidCiudad" />
+                              <h:selectOneMenu id="fkidCiudad9" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.ViewEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
+                              <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
+                              </h:selectOneMenu>
+                              <h:outputLabel value="Empresas contratadas:" for="fkidCiudad" />
+                              <h:selectOneMenu id="fkidCiudad10" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.ViewEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
+                              <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
+                              </h:selectOneMenu>
+                           </h:panelGrid>
+                            <br />
+                            <h:outputText value="Empresas asociadas actualmente" />
+                            <br />
+                            <br />
+                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                                         rows="5"
+                                         paginator="true"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="5,10,15">
+
+                                <p:column headerText="Empresa">
+                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                </p:column>
+
+                                <p:column headerText="Contacto">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+                                
+                                <p:column headerText="Servicio">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+                                
+                                <p:column headerText="Icono buscar">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+                                                     
+                            </p:dataTable>
+                            <br />
+                            <br />
+                            <h:outputText value="Empresas contratadas con frecuencia" />
+                            <br />
+                            <br />
+                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                                         rows="5"
+                                         paginator="true"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="5,10,15">
+
+                                <p:column headerText="Empresa">
+                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                </p:column>
+
+                                <p:column headerText="Contacto">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+
+                                <p:column headerText="Servicio">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+                                
+                                <p:column headerText="Icono buscar">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+
+                                
+                            </p:dataTable>
+                        </p:tab>
+                        <p:tab title="Calibraciones e instrumentación">
+                            <h:panelGrid columns="2">
+                              <h:outputLabel value="Empresas asociadas:" for="fkidCiudad" />
+                              <h:selectOneMenu id="fkidCiudad12" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.ViewEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
+                              <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
+                              </h:selectOneMenu>
+                              <h:outputLabel value="Empresas contratadas:" for="fkidCiudad" />
+                              <h:selectOneMenu id="fkidCiudad13" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.ViewEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
+                              <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
+                              </h:selectOneMenu>
+                           </h:panelGrid>
+                            <br />
+                            <h:outputText value="Empresas asociadas actualmente" />
+                            <br />
+                            <br />
+                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                                         rows="5"
+                                         paginator="true"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="5,10,15">
+
+                                <p:column headerText="Empresa">
+                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                </p:column>
+
+                                <p:column headerText="Contacto">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+                                
+                                <p:column headerText="Servicio">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+                                
+                                <p:column headerText="Icono buscar">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+                             
+                            </p:dataTable>
+                            <br />
+                            <br />
+                            <h:outputText value="Empresas contratadas con frecuencia" />
+                            <br />
+                            <br />
+                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                                         rows="5"
+                                         paginator="true"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="5,10,15">
+
+                                <p:column headerText="Empresa">
+                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                </p:column>
+
+                                <p:column headerText="Contacto">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+
+                                <p:column headerText="Servicio">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+                                
+                                <p:column headerText="Icono buscar">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+
+                                
+                            </p:dataTable>
+                        </p:tab>
+                        <p:tab title="Marcación y planos">
+                            <h:panelGrid columns="2">
+                              <h:outputLabel value="Empresas asociadas:" for="fkidCiudad" />
+                              <h:selectOneMenu id="fkidCiudad14" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.ViewEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
+                              <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
+                              </h:selectOneMenu>
+                              <h:outputLabel value="Empresas contratadas:" for="fkidCiudad" />
+                              <h:selectOneMenu id="fkidCiudad15" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.ViewEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
+                              <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
+                              </h:selectOneMenu>
+                           </h:panelGrid>
+                            <br />
+                            <h:outputText value="Empresas asociadas actualmente" />
+                            <br />
+                            <br />
+                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                                         rows="5"
+                                         paginator="true"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="5,10,15">
+
+                                <p:column headerText="Empresa">
+                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                </p:column>
+
+                                <p:column headerText="Contacto">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+                                
+                                 <p:column headerText="Servicio">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+                                
+                                 <p:column headerText="Icono buscar">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+
+                            </p:dataTable>
+                            <br />
+                            <br />
+                            <h:outputText value="Empresas contratadas con frecuencia" />
+                            <br />
+                            <br />
+                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                                         rows="5"
+                                         paginator="true"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="5,10,15">
+
+                                <p:column headerText="Empresa">
+                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                </p:column>
+
+                                <p:column headerText="Contacto">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+
+                                <p:column headerText="Servicio">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+                                
+                                <p:column headerText="Icono buscar">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+
+                                
+                            </p:dataTable>
+                        </p:tab>
+                        <p:tab title="Servicios específicos">
+                            <h:panelGrid columns="2">
+                              <h:outputLabel value="Empresas asociadas:" for="fkidCiudad" />
+                              <h:selectOneMenu id="fkidCiudad16" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.ViewEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
+                              <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
+                              </h:selectOneMenu>
+                              <h:outputLabel value="Empresas contratadas:" for="fkidCiudad" />
+                              <h:selectOneMenu id="fkidCiudad17" value="#{empresasController.selected.fkidCiudad}" title="#{bundle.ViewEmpresasTitle_fkidCiudad}" required="true" requiredMessage="#{bundle.EditEmpresasRequiredMessage_fkidCiudad}">
+                              <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
+                              </h:selectOneMenu>
+                           </h:panelGrid>
+                            <br />
+                            <h:outputText value="Empresas asociadas actualmente" />
+                            <br />
+                            <br />
+                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                                         rows="5"
+                                         paginator="true"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="5,10,15">
+
+                                <p:column headerText="Empresa">
+                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                </p:column>
+
+                                <p:column headerText="Contacto">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+                                
+                                <p:column headerText="Servicio">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+                                
+                                <p:column headerText="Icono buscar">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+
+                            </p:dataTable>
+                            <br />
+                            <br />
+                            <h:outputText value="Empresas contratadas con frecuencia" />
+                            <br />
+                            <br />
+                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                                         rows="5"
+                                         paginator="true"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="5,10,15">
+
+                                <p:column headerText="Empresa">
+                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                </p:column>
+
+                                <p:column headerText="Contacto">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+
+                                <p:column headerText="Servicio">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+                                
+                                <p:column headerText="Icono buscar">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+
+                                
+                            </p:dataTable>
+                        </p:tab>
+                    </p:tabView>
+                     
+
+                </p:panel>
+                <br />
+                
+                <p:commandButton value="Cerrar Sesión" ajax="false" actionListener="#{fileUploadView.upload}" disabled="false" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

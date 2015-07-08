@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Comité de mantenimiento"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+
+            <h:form>
+                <h:panelGrid columns="1">
+                    <p:tabMenu activeIndex="#{tabMenuController.index}">
+                        <p:menuitem value="Inicio" url="http://localhost:8080/comitemantenimiento/faces/Inicio.xhtml" icon="ui-icon-home">
+                            <f:param name="index" value="0" />
+                        </p:menuitem>
+                        <p:menuitem value="Repuestos" url="http://localhost:8080/comitemantenimiento/faces/repuestosxempresas/Repuestos.xhtml" icon="ui-icon-suitcase">
+                            <f:param name="index" value="1" />
+                        </p:menuitem>
+                        <p:menuitem value="Herramientas" url="http://localhost:8080/comitemantenimiento/faces/herramientasxempcomite/herramientas.xhtml" icon="ui-icon-wrench">
+                            <f:param name="index" value="2" />
+                        </p:menuitem>
+                        <p:menuitem value="Directorio Miembros" url="http://localhost:8080/comitemantenimiento/faces/usuarios/DirMiembros.xhtml" icon="ui-icon-contact"  >
+                            <f:param name="index" value="3" />
+                        </p:menuitem>
+                        <p:menuitem value="Dierectorio proveedores" url="http://localhost:8080/comitemantenimiento/faces/usuarios/DirProveedores.xhtml"  icon="ui-icon-contact">
+                            <f:param name="index" value="4" />
+                        </p:menuitem>
+                        <p:menuitem value="Servicios" url="http://localhost:8080/comitemantenimiento/faces/servicios/ListServicios.xhtml" icon="ui-icon-person">
+                            <f:param name="index" value="5" />
+                        </p:menuitem>
+                        <p:menuitem value="Normas" url="http://localhost:8080/comitemantenimiento/faces/normas/Normatividad.xhtml" icon="ui-icon-document">
+                            <f:param name="index" value="6" />
+                        </p:menuitem>
+                    </p:tabMenu>
+                </h:panelGrid>    
+                <p:panel header="Ingresar Empresa al Comité">
+                    <h:panelGrid columns="2">
+
+                        <h:outputLabel value="Título" for="nombreNorma" />
+                        <h:inputText id="nombreNorma" value="#{normasController.selected.nombreNorma}" title="#{bundle.CreateNormasTitle_nombreNorma}" required="true" requiredMessage="#{bundle.CreateNormasRequiredMessage_nombreNorma}"/>
+                        <h:outputLabel value="Numeral" for="codigoNorma" />
+                        <h:inputText id="codigoNorma" value="#{normasController.selected.codigoNorma}" title="#{bundle.CreateNormasTitle_codigoNorma}" required="true" requiredMessage="#{bundle.CreateNormasRequiredMessage_codigoNorma}"/>
+                        <h:outputLabel value="Entidad reguladora" for="entidadreguladoraNorma" />
+                        <h:inputText id="entidadreguladoraNorma" value="#{normasController.selected.entidadreguladoraNorma}" title="#{bundle.CreateNormasTitle_entidadreguladoraNorma}" required="true" requiredMessage="#{bundle.CreateNormasRequiredMessage_entidadreguladoraNorma}"/>
+                        <h:outputLabel value="Descripción" for="descripcionNorma" />
+                        <h:inputText id="descripcionNorma" value="#{normasController.selected.descripcionNorma}" title="#{bundle.CreateNormasTitle_descripcionNorma}" required="true" requiredMessage="#{bundle.CreateNormasRequiredMessage_descripcionNorma}"/>
+                        <!--
+                        <h:outputLabel value="#{bundle.CreateNormasLabel_fkidUsuarios}" for="fkidUsuarios" />
+                        <h:selectOneMenu id="fkidUsuarios" value="#{normasController.selected.fkidUsuarios}" title="#{bundle.CreateNormasTitle_fkidUsuarios}" required="true" requiredMessage="#{bundle.CreateNormasRequiredMessage_fkidUsuarios}">
+                        -->    
+                    </h:panelGrid>
+                    
+                    <p:growl id="growl" life="2000" />   
+                    <p:commandButton id="btnGuardarNorma" value="Guardar" update="growl" actionListener="#{normasController.create}" styleClass="ui-priority-primary"  />
+                </p:panel>    
+                <br />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

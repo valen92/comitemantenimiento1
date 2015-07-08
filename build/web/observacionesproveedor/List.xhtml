@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListObservacionesproveedorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListObservacionesproveedorEmpty}" rendered="#{observacionesproveedorController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{observacionesproveedorController.items.rowCount > 0}">
+                    <h:outputText value="#{observacionesproveedorController.pagination.pageFirstItem + 1}..#{observacionesproveedorController.pagination.pageLastItem + 1}/#{observacionesproveedorController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{observacionesproveedorController.previous}" value="#{bundle.Previous} #{observacionesproveedorController.pagination.pageSize}" rendered="#{observacionesproveedorController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{observacionesproveedorController.next}" value="#{bundle.Next} #{observacionesproveedorController.pagination.pageSize}" rendered="#{observacionesproveedorController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{observacionesproveedorController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListObservacionesproveedorTitle_idObservacionesProveedor}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idObservacionesProveedor}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListObservacionesproveedorTitle_tituloObservacionproveedor}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tituloObservacionproveedor}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListObservacionesproveedorTitle_observacionObservacionproveedor}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.observacionObservacionproveedor}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListObservacionesproveedorTitle_calificacionObservacionproveedor}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.calificacionObservacionproveedor}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListObservacionesproveedorTitle_fecObservacionproveedor}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fecObservacionproveedor}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListObservacionesproveedorTitle_fkidUsuarios}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fkidUsuarios}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListObservacionesproveedorTitle_fkidServiciosContrato}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fkidServiciosContrato}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{observacionesproveedorController.prepareView}" value="#{bundle.ListObservacionesproveedorViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{observacionesproveedorController.prepareEdit}" value="#{bundle.ListObservacionesproveedorEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{observacionesproveedorController.destroy}" value="#{bundle.ListObservacionesproveedorDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{observacionesproveedorController.prepareCreate}" value="#{bundle.ListObservacionesproveedorCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListObservacionesproveedorIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

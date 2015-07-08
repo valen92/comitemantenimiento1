@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewActividadesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewActividadesLabel_idActividad}"/>
+                    <h:outputText value="#{actividadesController.selected.idActividad}" title="#{bundle.ViewActividadesTitle_idActividad}"/>
+                    <h:outputText value="#{bundle.ViewActividadesLabel_numeroActividad}"/>
+                    <h:outputText value="#{actividadesController.selected.numeroActividad}" title="#{bundle.ViewActividadesTitle_numeroActividad}"/>
+                    <h:outputText value="#{bundle.ViewActividadesLabel_tituloActividad}"/>
+                    <h:outputText value="#{actividadesController.selected.tituloActividad}" title="#{bundle.ViewActividadesTitle_tituloActividad}"/>
+                    <h:outputText value="#{bundle.ViewActividadesLabel_descripcionActividad}"/>
+                    <h:outputText value="#{actividadesController.selected.descripcionActividad}" title="#{bundle.ViewActividadesTitle_descripcionActividad}"/>
+                    <h:outputText value="#{bundle.ViewActividadesLabel_fecfirmaActividad}"/>
+                    <h:outputText value="#{actividadesController.selected.fecfirmaActividad}" title="#{bundle.ViewActividadesTitle_fecfirmaActividad}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewActividadesLabel_fecinicioActividad}"/>
+                    <h:outputText value="#{actividadesController.selected.fecinicioActividad}" title="#{bundle.ViewActividadesTitle_fecinicioActividad}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewActividadesLabel_fecfinActividad}"/>
+                    <h:outputText value="#{actividadesController.selected.fecfinActividad}" title="#{bundle.ViewActividadesTitle_fecfinActividad}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewActividadesLabel_estadoActividad}"/>
+                    <h:outputText value="#{actividadesController.selected.estadoActividad}" title="#{bundle.ViewActividadesTitle_estadoActividad}"/>
+                    <h:outputText value="#{bundle.ViewActividadesLabel_fkidServiciosContrato}"/>
+                    <h:outputText value="#{actividadesController.selected.fkidServiciosContrato}" title="#{bundle.ViewActividadesTitle_fkidServiciosContrato}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{actividadesController.destroyAndView}" value="#{bundle.ViewActividadesDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewActividadesEditLink}"/>
+                <br />
+                <h:commandLink action="#{actividadesController.prepareCreate}" value="#{bundle.ViewActividadesCreateLink}" />
+                <br />
+                <h:commandLink action="#{actividadesController.prepareList}" value="#{bundle.ViewActividadesShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewActividadesIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

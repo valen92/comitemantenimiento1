@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewLinearepuestosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewLinearepuestosLabel_idLineaRepuestos}"/>
+                    <h:outputText value="#{linearepuestosController.selected.idLineaRepuestos}" title="#{bundle.ViewLinearepuestosTitle_idLineaRepuestos}"/>
+                    <h:outputText value="#{bundle.ViewLinearepuestosLabel_codigoLinearepuesto}"/>
+                    <h:outputText value="#{linearepuestosController.selected.codigoLinearepuesto}" title="#{bundle.ViewLinearepuestosTitle_codigoLinearepuesto}"/>
+                    <h:outputText value="#{bundle.ViewLinearepuestosLabel_nombreLinearepuesto}"/>
+                    <h:outputText value="#{linearepuestosController.selected.nombreLinearepuesto}" title="#{bundle.ViewLinearepuestosTitle_nombreLinearepuesto}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{linearepuestosController.destroyAndView}" value="#{bundle.ViewLinearepuestosDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewLinearepuestosEditLink}"/>
+                <br />
+                <h:commandLink action="#{linearepuestosController.prepareCreate}" value="#{bundle.ViewLinearepuestosCreateLink}" />
+                <br />
+                <h:commandLink action="#{linearepuestosController.prepareList}" value="#{bundle.ViewLinearepuestosShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewLinearepuestosIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

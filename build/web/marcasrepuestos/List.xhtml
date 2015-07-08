@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListMarcasrepuestosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListMarcasrepuestosEmpty}" rendered="#{marcasrepuestosController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{marcasrepuestosController.items.rowCount > 0}">
+                    <h:outputText value="#{marcasrepuestosController.pagination.pageFirstItem + 1}..#{marcasrepuestosController.pagination.pageLastItem + 1}/#{marcasrepuestosController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{marcasrepuestosController.previous}" value="#{bundle.Previous} #{marcasrepuestosController.pagination.pageSize}" rendered="#{marcasrepuestosController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{marcasrepuestosController.next}" value="#{bundle.Next} #{marcasrepuestosController.pagination.pageSize}" rendered="#{marcasrepuestosController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{marcasrepuestosController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMarcasrepuestosTitle_idMarcasRepuestos}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idMarcasRepuestos}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMarcasrepuestosTitle_codigoMarcarepuesto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoMarcarepuesto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMarcasrepuestosTitle_nombreMarcarepuesto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombreMarcarepuesto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{marcasrepuestosController.prepareView}" value="#{bundle.ListMarcasrepuestosViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{marcasrepuestosController.prepareEdit}" value="#{bundle.ListMarcasrepuestosEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{marcasrepuestosController.destroy}" value="#{bundle.ListMarcasrepuestosDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{marcasrepuestosController.prepareCreate}" value="#{bundle.ListMarcasrepuestosCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListMarcasrepuestosIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

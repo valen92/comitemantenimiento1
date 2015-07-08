@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListRepuestosxempresasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListRepuestosxempresasEmpty}" rendered="#{repuestosxempresasController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{repuestosxempresasController.items.rowCount > 0}">
+                    <h:outputText value="#{repuestosxempresasController.pagination.pageFirstItem + 1}..#{repuestosxempresasController.pagination.pageLastItem + 1}/#{repuestosxempresasController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{repuestosxempresasController.previous}" value="#{bundle.Previous} #{repuestosxempresasController.pagination.pageSize}" rendered="#{repuestosxempresasController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{repuestosxempresasController.next}" value="#{bundle.Next} #{repuestosxempresasController.pagination.pageSize}" rendered="#{repuestosxempresasController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{repuestosxempresasController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRepuestosxempresasTitle_idRepuestosxEmpresas}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idRepuestosxEmpresas}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRepuestosxempresasTitle_estadoRepuestoempresa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.estadoRepuestoempresa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRepuestosxempresasTitle_codigoRepuestoempresa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoRepuestoempresa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRepuestosxempresasTitle_cantidadRepuestoempresa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cantidadRepuestoempresa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRepuestosxempresasTitle_precioRepuestoepresa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.precioRepuestoepresa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRepuestosxempresasTitle_descripcionRepuestoempresa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcionRepuestoempresa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRepuestosxempresasTitle_fkidRepuestos}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fkidRepuestos}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRepuestosxempresasTitle_fkidUsuarios}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fkidUsuarios}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRepuestosxempresasTitle_fkidEmpresas}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fkidEmpresas}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRepuestosxempresasTitle_fkidMarcasRepuestos}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fkidMarcasRepuestos}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{repuestosxempresasController.prepareView}" value="#{bundle.ListRepuestosxempresasViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{repuestosxempresasController.prepareEdit}" value="#{bundle.ListRepuestosxempresasEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{repuestosxempresasController.destroy}" value="#{bundle.ListRepuestosxempresasDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{repuestosxempresasController.prepareCreate}" value="#{bundle.ListRepuestosxempresasCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListRepuestosxempresasIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

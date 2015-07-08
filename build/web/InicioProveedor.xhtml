@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Comité de Mantenimiento"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <h:panelGrid columns="1">
+                    <p:tabMenu activeIndex="#{tabMenuController.index}">
+                        <p:menuitem value="Inicio" url="/faces/InicioProveedor.xhtml" icon="ui-icon-home">
+                            <f:param name="index" value="0" />
+                        </p:menuitem>
+                        <p:menuitem value="Mi Perfil" url="/faces/perfil/MiembrodelComite.xhtml" icon="ui-icon-person">
+                            <f:param name="index" value="1" />
+                        </p:menuitem>
+                       
+                        <p:menuitem value="Directorio de Empresas" url="/faces/usuarios/DirMiembrosUsuMC.xhtml" icon="ui-icon-contact"  >
+                            <f:param name="index" value="2" /> 
+                        </p:menuitem>
+                        <p:menuitem value="Directorio de Empresas Asociadas" url="/faces/usuarios/DirEmpasociadasUsuMC.xhtml"  icon="ui-icon-contact">
+                            <f:param name="index" value="3" />
+                        </p:menuitem>
+                        
+                    </p:tabMenu>              
+                </h:panelGrid>
+                <p:panel header="Actividades vigentes">
+                    
+                    <p:dataTable value="#{actividadesController.items}" var="item"
+                                         rows="5">
+                                         
+                         <p:column headerText="Titulo actividad">
+                                     <h:outputText value="#{item.tituloActividad}"/>
+                                    
+                          </p:column>
+                         <p:column headerText="Empresa">
+                                    <h:outputText value="#{item.tituloActividad}"/>
+                                    
+                          </p:column>
+                                     
+                    </p:dataTable> 
+                      
+                            
+                </p:panel>
+                <br />
+                <p:panel header="Servicios a Prestar">
+                    <p:tabView orientation="left">
+                        <p:tab title="Trabajos  mecánicos">
+                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                                         rows="5"
+                                         paginator="true"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="5,10,15">
+
+                                <p:column headerText="Actividad específica">
+                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                </p:column>
+
+                                <p:column headerText="Empresas que requieren servicio">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+
+                                
+
+                                <p:column headerText="Servicio habilitado">
+                                    <p:growl id="msg" />
+
+                                    <h:panelGrid >
+                                        <p:selectBooleanCheckbox value="#{item.estadoHerramempcomite}" />
+                                    </h:panelGrid>
+                                </p:column>
+                            </p:dataTable>
+                        </p:tab>
+                        <p:tab title="Civiles-Locativos">
+                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                                         rows="5"
+                                         paginator="true"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="5,10,15">
+
+                                <p:column headerText="Actividad Especifica">
+                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                </p:column>
+
+                                <p:column headerText="Empresas que requieren servicio">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+
+                               
+
+                                <p:column headerText="Servicio habilitado">
+                                    <p:growl id="msg" />
+
+                                    <h:panelGrid >
+                                        <p:selectBooleanCheckbox value="#{item.estadoHerramempcomite}" />
+                                    </h:panelGrid>
+                                </p:column>
+                            </p:dataTable>
+                        </p:tab>
+                        <p:tab title="Eléctricos">
+                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                                         rows="5"
+                                         paginator="true"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="5,10,15">
+
+                                <p:column headerText="Actividad Especifica">
+                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                </p:column>
+
+                                <p:column headerText="Empresas que requieren servicio">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+
+                               
+
+                                <p:column headerText="Servicio habilitado">
+                                    <p:growl id="msg" />
+
+                                    <h:panelGrid >
+                                        <p:selectBooleanCheckbox value="#{item.estadoHerramempcomite}" />
+                                    </h:panelGrid>
+                                </p:column>
+                                
+                            </p:dataTable>
+                        </p:tab>
+                        <p:tab title="Limpieza y oficios varios">
+                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                                         rows="5"
+                                         paginator="true"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="5,10,15">
+
+                                <p:column headerText="Actividad Especifica">
+                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                </p:column>
+
+                                <p:column headerText="Empresas que requieren servicio">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+
+                               
+
+                                <p:column headerText="Servicio habilitado">
+                                    <p:growl id="msg" />
+
+                                    <h:panelGrid >
+                                        <p:selectBooleanCheckbox value="#{item.estadoHerramempcomite}" />
+                                    </h:panelGrid>
+                                </p:column>
+                                
+                            </p:dataTable>
+                        </p:tab>
+                        <p:tab title="Mantenimiento preventivo y predictivo">
+                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                                         rows="5"
+                                         paginator="true"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="5,10,15">
+
+                                <p:column headerText="Actividad Especifica">
+                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                </p:column>
+
+                                <p:column headerText="Empresas que requieren servicio">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+
+                               
+
+                                <p:column headerText="Servicio habilitado">
+                                    <p:growl id="msg" />
+
+                                    <h:panelGrid >
+                                        <p:selectBooleanCheckbox value="#{item.estadoHerramempcomite}" />
+                                    </h:panelGrid>
+                                </p:column>
+                                
+                            </p:dataTable>
+                        </p:tab>
+                        <p:tab title="Calibraciones e instrumentación">
+                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                                         rows="5"
+                                         paginator="true"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="5,10,15">
+
+                                <p:column headerText="Actividad Especifica">
+                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                </p:column>
+
+                                <p:column headerText="Empresas que requieren servicio">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+
+                               
+
+                                <p:column headerText="Servicio habilitado">
+                                    <p:growl id="msg" />
+
+                                    <h:panelGrid >
+                                        <p:selectBooleanCheckbox value="#{item.estadoHerramempcomite}" />
+                                    </h:panelGrid>
+                                </p:column>
+                                
+                            </p:dataTable>
+                        </p:tab>
+                        <p:tab title="Marcación y planos">
+                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                                         rows="5"
+                                         paginator="true"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="5,10,15">
+
+                                <p:column headerText="Actividad Especifica">
+                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                </p:column>
+
+                                <p:column headerText="Empresas que requieren servicio">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+
+                               
+
+                                <p:column headerText="Servicio habilitado">
+                                    <p:growl id="msg" />
+
+                                    <h:panelGrid >
+                                        <p:selectBooleanCheckbox value="#{item.estadoHerramempcomite}" />
+                                    </h:panelGrid>
+                                </p:column>
+                                
+                            </p:dataTable>
+                        </p:tab>
+                        <p:tab title="Servicios especificos">
+                            <p:dataTable value="#{herramientasxempcomiteController.items}" var="item"
+                                         rows="5"
+                                         paginator="true"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="5,10,15">
+
+                                <p:column headerText="Actividad Especifica">
+                                    <h:outputText value="#{item.fkidHerramientas.nombreHerramienta}"/>
+                                </p:column>
+
+                                <p:column headerText="Empresas que requieren servicio">
+                                    <h:outputText value="#{item.codigoHerramempcomite}"/>
+                                </p:column>
+
+                               
+
+                                <p:column headerText="Servicio habilitado">
+                                    <p:growl id="msg" />
+
+                                    <h:panelGrid >
+                                        <p:selectBooleanCheckbox value="#{item.estadoHerramempcomite}" />
+                                    </h:panelGrid>
+                                </p:column>
+                                
+                            </p:dataTable>
+                        </p:tab>
+                    </p:tabView>
+                     
+
+                </p:panel>
+                <br />
+                <br />
+                <p:commandButton value="Agregar actividad" ajax="false" actionListener="#{actividadesController.prepareCreate}" disabled="false" />
+                <br />
+                <p:commandButton value="Eliminar actividad" ajax="false" actionListener="#{fileUploadView.upload}" disabled="false" />
+                <br />
+                <p:commandButton value="Cerrar Sesión" ajax="false" actionListener="#{fileUploadView.upload}" disabled="false" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
+
