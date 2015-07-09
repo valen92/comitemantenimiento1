@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -17,6 +18,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import org.primefaces.context.RequestContext;
 
 @Named("normasController")
 @SessionScoped
@@ -67,6 +69,11 @@ public class NormasController implements Serializable {
         return "List";
     }
 
+    public String reload() {
+        recreateModel();
+        return "Normatividad";
+    }
+
     public String prepareView() {
         current = (Normas) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
@@ -113,6 +120,8 @@ public class NormasController implements Serializable {
         performDestroy();
         recreatePagination();
         recreateModel();
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Información",  "La norma ha sido eliminada con exito");  
+        RequestContext.getCurrentInstance().showMessageInDialog(message);
     }
 
     public String destroyAndView() {

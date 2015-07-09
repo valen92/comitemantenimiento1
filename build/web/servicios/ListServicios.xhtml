@@ -71,7 +71,7 @@
                             <p:confirmDialog message="Esta seguro de que desea eliminar este servicio?"
                                 header="Atención"
                                 severity="alert" widgetVar="confirmDialog">
-                                <p:commandButton value="Si" action="#{serviciosController.destroy}" onclick="ListServicios.show();" 
+                                <p:commandButton value="Si" onclick="ListServicios.show();" action="#{serviciosController.destroy}" 
                                />
                                 <p:commandButton value="No" onclick="PF('confirmDialog').hide();" type="button" />
                             </p:confirmDialog>

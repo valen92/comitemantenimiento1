@@ -114,7 +114,8 @@ public class ServiciosController implements Serializable {
         performDestroy();
         recreatePagination();
         recreateModel();
-        
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Información",  "El servicio ha sido eliminado con exito");  
+        RequestContext.getCurrentInstance().showMessageInDialog(message);
     }
 
     public String destroyAndView() {
