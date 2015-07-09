@@ -81,7 +81,7 @@
                     </p:dataTable>
                 </p:panel>
                 <br />
-                 <p:commandButton value="Añadir nueva norma" ajax="false" actionListener="#{fileUploadView.upload}" disabled="false" />
+                 <p:commandButton value="Añadir nueva norma" ajax="false" action="#{normasController.prepareCreate}" disabled="false" />
             </h:form>
         </ui:define>
     </ui:composition>
