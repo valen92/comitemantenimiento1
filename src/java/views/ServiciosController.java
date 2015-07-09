@@ -1,15 +1,12 @@
 package views;
 
-import entities.Servicios;
-import views.util.JsfUtil;
-import views.util.PaginationHelper;
 import controller.ServiciosFacade;
-
+import entities.Servicios;
 import java.io.Serializable;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -17,6 +14,10 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.inject.Named;
+import org.primefaces.context.RequestContext;
+import views.util.JsfUtil;
+import views.util.PaginationHelper;
 
 @Named("serviciosController")
 @SessionScoped
@@ -107,13 +108,13 @@ public class ServiciosController implements Serializable {
         }
     }
 
-    public String destroy() {
+    public void destroy() {
         current = (Servicios) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
         recreateModel();
-        return "List";
+        
     }
 
     public String destroyAndView() {

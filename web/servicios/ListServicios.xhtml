@@ -43,7 +43,8 @@
                                  rows="5"
                                  paginator="true"
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                 rowsPerPageTemplate="5,10,15">
+                                 rowsPerPageTemplate="5,10,15"
+                                 id="messages">
 
                         <p:column headerText="Servicio">
                             <h:outputText value="#{item.nombreServicio}"/>
@@ -66,11 +67,18 @@
                             <h:outputText value=" "/>
                         </p:column>
                         <p:column style="width:24px">
-                            <h:commandLink action="#{serviciosController.destroy}" styleClass="ui-icon ui-icon-trash"/>
+                            <h:commandLink onclick="PF('confirmDialog').show(); return false" styleClass="ui-icon ui-icon-trash"/>
+                      
+                <p:confirmDialog message="Esta seguro de que desea eliminar este servicio?"
+                    header="Atención"
+                    severity="alert" widgetVar="confirmDialog">
+                    <p:commandButton value="Si" action="#{serviciosController.destroy}" onclick="ListServicios.show();" 
+                   />
+                    <p:commandButton value="No" onclick="PF('confirmDialog').hide();" type="button" />
+                </p:confirmDialog>
                         </p:column>
                     </p:dataTable>
                 </p:panel>
-
             </h:form>
         </ui:define>
     </ui:composition>
