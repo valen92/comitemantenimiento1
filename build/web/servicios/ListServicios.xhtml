@@ -69,12 +69,12 @@
                             <h:outputText value=" "/>
                         </p:column>
                         <p:column style="width:24px">
-                            <h:commandLink onclick="PF('confirmDialog').show(); return false" styleClass="ui-icon ui-icon-trash"/>
-                            <p:confirmDialog message="Esta seguro de que desea eliminar este servicio?"
+                            <h:commandLink action="#{serviciosController.destroy}" styleClass="ui-icon ui-icon-trash"/>
+                            <p:confirmDialog message="Esta seguro de que desea eliminar esta servicio?"
                                 header="Atención"
                                 severity="alert" widgetVar="confirmDialog">
-                                <p:commandButton value="Si" onclick="ListServicios.show();" action="#{serviciosController.destroy}" 
-                               />
+                                <p:commandButton value="Si" action="#{serviciosController.destroyFinal}" 
+                                onclick="PF('confirmDialog').hide();"/>
                                 <p:commandButton value="No" onclick="PF('confirmDialog').hide();" type="button" />
                             </p:confirmDialog>
                         </p:column>

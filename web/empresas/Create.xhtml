@@ -18,25 +18,25 @@
             <h:form>
                 <h:panelGrid columns="1">
                     <p:tabMenu activeIndex="#{tabMenuController.index}">
-                        <p:menuitem value="Inicio" url="http://localhost:8080/comitemantenimiento/faces/Inicio.xhtml" icon="ui-icon-home">
+                        <p:menuitem value="Inicio" url="/faces/Inicio.xhtml" icon="ui-icon-home">
                             <f:param name="index" value="0" />
                         </p:menuitem>
-                        <p:menuitem value="Repuestos" url="http://localhost:8080/comitemantenimiento/faces/repuestosxempresas/Repuestos.xhtml" icon="ui-icon-suitcase">
+                        <p:menuitem value="Repuestos" url="/faces/repuestosxempresas/Repuestos.xhtml" icon="ui-icon-suitcase">
                             <f:param name="index" value="1" />
                         </p:menuitem>
-                        <p:menuitem value="Herramientas" url="http://localhost:8080/comitemantenimiento/faces/herramientasxempcomite/herramientas.xhtml" icon="ui-icon-wrench">
+                        <p:menuitem value="Herramientas" url="/faces/herramientasxempcomite/herramientas.xhtml" icon="ui-icon-wrench">
                             <f:param name="index" value="2" />
                         </p:menuitem>
-                        <p:menuitem value="Directorio Miembros" url="http://localhost:8080/comitemantenimiento/faces/usuarios/DirMiembros.xhtml" icon="ui-icon-contact"  >
+                        <p:menuitem value="Directorio Miembros" url="/faces/usuarios/DirMiembros.xhtml" icon="ui-icon-contact"  >
                             <f:param name="index" value="3" />
                         </p:menuitem>
-                        <p:menuitem value="Dierectorio proveedores" url="http://localhost:8080/comitemantenimiento/faces/usuarios/DirProveedores.xhtml"  icon="ui-icon-contact">
+                        <p:menuitem value="Dierectorio proveedores" url="/faces/usuarios/DirProveedores.xhtml"  icon="ui-icon-contact">
                             <f:param name="index" value="4" />
                         </p:menuitem>
-                        <p:menuitem value="Servicios" url="http://localhost:8080/comitemantenimiento/faces/servicios/ListServicios.xhtml" icon="ui-icon-person">
+                        <p:menuitem value="Servicios" url="/faces/servicios/ListServicios.xhtml" icon="ui-icon-person">
                             <f:param name="index" value="5" />
                         </p:menuitem>
-                        <p:menuitem value="Normas" url="http://localhost:8080/comitemantenimiento/faces/normas/Normatividad.xhtml" icon="ui-icon-document">
+                        <p:menuitem value="Normas" url="/faces/normas/Normatividad.xhtml" icon="ui-icon-document">
                             <f:param name="index" value="6" />
                         </p:menuitem>
                     </p:tabMenu>
@@ -57,7 +57,7 @@
                         <h:inputText id="represlegalEmpresa" value="#{empresasController.selected.represlegalEmpresa}" title="#{bundle.CreateEmpresasTitle_represlegalEmpresa}" />
 
                         <h:outputLabel value="#{bundle.CreateEmpresasLabel_fecingEmpresa}" for="fecingEmpresa" />
-                        <p:calendar id="fecingEmpresacom" value="#{empresasController.selected.fecingEmpresa}" title="#{bundle.CreateEmpresasTitle_fecingEmpresa}" pattern="dd-MM-yyyy">
+                        <p:calendar id="fecingEmpresa" value="#{empresasController.selected.fecingEmpresa}" title="#{bundle.CreateEmpresasTitle_fecingEmpresa}" pattern="dd-MM-yyyy">
                         </p:calendar>
 
                         <p:outputLabel for="console" value="Estado:" />
@@ -67,8 +67,8 @@
                         </p:selectOneRadio>
                         <h:outputLabel value="#{bundle.CreateEmpresasLabel_logoEmpresa}"/>
                         <p:fileUpload value="#{empresasController.selected.logoEmpresa}" mode="simple" />
-                        <p:commandButton value="Eliminar" ajax="false" actionListener="#{fileUploadView.upload}" disabled="false" />
-                        
+                        <h:outputLabel value=""/>
+                        <h:outputLabel value=""/>
 
 
                         <h:outputLabel value="#{bundle.CreateEmpresasLabel_fkidCiudad}" for="fkidCiudad" />
@@ -77,7 +77,14 @@
                         </h:selectOneMenu>
 
                         
-                        <h:panelGrid columns="2" cellpadding="10">
+                        
+                        
+                        <h:outputText id="display1" value="#{selectOneView.option}" style="font-weight: bold" />
+                        <p:growl id="growl" life="2000" />    
+                        <p:commandButton  onclick="#{usuariosController.prepareCreate()}"  type="button" value="Adicionar usuario" process="@this" icon="ui-icon-plusthick"/>
+                    
+                    </h:panelGrid>  
+                    <h:panelGrid columns="2" cellpadding="10">
                             <p:dataTable value="#{usuariosController.items}" var="item" 
                                          rows="5"
                                          paginator="false"
@@ -99,16 +106,10 @@
                             </p:dataTable>
 
                         </h:panelGrid> 
-                        
-                        <h:outputText id="display1" value="#{selectOneView.option}" style="font-weight: bold" />
-                        <p:growl id="growl" life="2000" />    
-                        <p:commandButton actionListener="#{usuariosController.create()}"  update="growl" value="Adicionar usuario" icon="ui-icon-plusthick"/>
-                    
-                    </h:panelGrid>  
 
                     <h:outputText id="display2" value="#{selectOneView.option}" style="font-weight: bold" />
-                    <p:growl id="growl" life="2000" />    
-                    <p:commandButton  id="aceptar" value="Guardar"  update="growl" actionListener="#{empresasController.create()}" styleClass="ui-priority-primary" />
+                    <p:growl id="grow2" life="2000" />    
+                    <p:commandButton  id="aceptar" value="Guardar"  update="grow2" action="#{empresasController.create()}" styleClass="ui-priority-primary" />
                 </p:panel>
 
             </h:form>

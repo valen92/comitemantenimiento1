@@ -111,13 +111,31 @@ public class ServiciosController implements Serializable {
     public void destroy() {
         current = (Servicios) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        RequestContext.getCurrentInstance().execute("PF('confirmDialog').show();");
+    }
+
+    public void destroyCancel() {
+        RequestContext.getCurrentInstance().closeDialog("EliminarServicio");
+    }
+
+    public String destroyFinal() {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta",  "El servicio ha sido eliminado con exito");  
+        RequestContext.getCurrentInstance().showMessageInDialog(message);
         performDestroy();
         recreatePagination();
         recreateModel();
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Información",  "El servicio ha sido eliminado con exito");  
-        RequestContext.getCurrentInstance().showMessageInDialog(message);
+        return "List";
     }
 
+    public String destroyFinal1() {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta",  "El servicio ha sido eliminado con exito");  
+        RequestContext.getCurrentInstance().showMessageInDialog(message);
+        performDestroy();
+        recreatePagination();
+        recreateModel();
+        return "ListServicios";
+    }
+    
     public String reload() {
         recreateModel();
         return "ListServicios";

@@ -120,7 +120,7 @@ public class NormasController implements Serializable {
         performDestroy();
         recreatePagination();
         recreateModel();
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Información",  "La norma ha sido eliminada con exito");  
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, current.toString(),  "La norma ha sido eliminada con exito");  
         RequestContext.getCurrentInstance().showMessageInDialog(message);
     }
 
