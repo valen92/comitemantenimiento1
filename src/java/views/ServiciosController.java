@@ -114,10 +114,6 @@ public class ServiciosController implements Serializable {
         RequestContext.getCurrentInstance().execute("PF('confirmDialog').show();");
     }
 
-    public void destroyCancel() {
-        RequestContext.getCurrentInstance().closeDialog("EliminarServicio");
-    }
-
     public String destroyFinal() {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta",  "El servicio ha sido eliminado con exito");  
         RequestContext.getCurrentInstance().showMessageInDialog(message);

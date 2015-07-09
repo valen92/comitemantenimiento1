@@ -117,11 +117,25 @@ public class NormasController implements Serializable {
     public void destroy() {
         current = (Normas) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        RequestContext.getCurrentInstance().execute("PF('confirmDialog').show();");
+    }
+
+    public String destroyFinal() {
         performDestroy();
         recreatePagination();
         recreateModel();
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, current.toString(),  "La norma ha sido eliminada con exito");  
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta",  "La norma ha sido eliminada con exito");  
         RequestContext.getCurrentInstance().showMessageInDialog(message);
+        return "List";
+    }
+
+    public String destroyFinal1() {
+        performDestroy();
+        recreatePagination();
+        recreateModel();
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta",  "La norma ha sido eliminada con exito");  
+        RequestContext.getCurrentInstance().showMessageInDialog(message);
+        return "Normatividad";
     }
 
     public String destroyAndView() {
