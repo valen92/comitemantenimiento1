@@ -107,13 +107,12 @@ public class NormasController implements Serializable {
         }
     }
 
-    public String destroy() {
+    public void destroy() {
         current = (Normas) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
         recreateModel();
-        return "List";
     }
 
     public String destroyAndView() {
