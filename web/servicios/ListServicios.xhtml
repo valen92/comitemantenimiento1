@@ -55,7 +55,9 @@
                         </p:column>
                         
                         <p:column headerText="Fecha de agregación">
-                            <h:outputText value="#{item.fechaServicio}"/>
+                            <h:outputText value="#{item.fechaServicio}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
                         </p:column>
                         
                         <p:column style="width:24px">

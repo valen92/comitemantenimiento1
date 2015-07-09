@@ -118,6 +118,11 @@ public class ServiciosController implements Serializable {
         RequestContext.getCurrentInstance().showMessageInDialog(message);
     }
 
+    public String reload() {
+        recreateModel();
+        return "ListServicios";
+    }
+
     public String destroyAndView() {
         performDestroy();
         recreateModel();
