@@ -87,16 +87,16 @@ public class UsuariosController implements Serializable {
         try {
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UsuariosCreated"));
-            return reload();
+            return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
         }
     }
     
-    public String reload (){
+    public String reloadMiembro (){
         recreateModel();
-        return "/Inicio";        
+        return "/usuarios/DirMiembros";        
     }
 
     public String prepareEdit() {
