@@ -116,13 +116,28 @@ public class UsuariosController implements Serializable {
         }
     }
 
-    public String destroy() {
+    public void destroy() {
         current = (Usuarios) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        RequestContext.getCurrentInstance().execute("PF('confirmDialog').show();");
+    }
+
+    public String destroyFinal() {
         performDestroy();
         recreatePagination();
         recreateModel();
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta",  "El usuario ha sido eliminado con exito");  
+        RequestContext.getCurrentInstance().showMessageInDialog(message);
         return "List";
+    }
+
+    public String destroyFinal1() {
+        performDestroy();
+        recreatePagination();
+        recreateModel();
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta",  "El usuario ha sido eliminado con exito");  
+        RequestContext.getCurrentInstance().showMessageInDialog(message);
+        return "DirMiembros";
     }
 
     public String destroyAndView() {
