@@ -90,9 +90,10 @@
                         <h:selectOneMenu id="fkidEmpresas" value="#{usuariosController.selected.fkidEmpresas}" title="#{bundle.CreateUsuariosTitle_fkidEmpresas}" required="true" requiredMessage="#{bundle.CreateUsuariosRequiredMessage_fkidEmpresas}">
                             <f:selectItems value="#{empresasController.itemsAvailableSelectOne}"/>
                         </h:selectOneMenu>
-                        <p:link outcome="/empresas/Create" value="Crear empresa">
-                            <f:param name="createEn" />
-                        </p:link>
+                                    
+                        <h:form>
+                            <p:commandButton action="#{empresasController.prepareCreate()}" process="@this" value="Crear Empresa" icon="ui-icon-plusthick"/>
+                        </h:form>
 
                     </h:panelGrid>
                     <p:growl id="growl" life="2000" />   

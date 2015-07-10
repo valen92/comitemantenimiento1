@@ -80,18 +80,23 @@ public class UsuariosController implements Serializable {
     public String prepareCreate() {
         current = new Usuarios();
         selectedItemIndex = -1;
-        return "usuarios/Create";
+        return "/usuarios/Create";
     }
 
     public String create() {
         try {
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UsuariosCreated"));
-            return prepareCreate();
+            return reload();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
         }
+    }
+    
+    public String reload (){
+        recreateModel();
+        return "/Inicio";        
     }
 
     public String prepareEdit() {

@@ -79,7 +79,7 @@ public class EmpresasController implements Serializable {
     public String prepareCreate() {
         current = new Empresas();
         selectedItemIndex = -1;
-        return "empresas/Create";
+        return "/empresas/Create";
     }
     
     
