@@ -31,6 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Repuestosxempresas.findAll", query = "SELECT r FROM Repuestosxempresas r"),
+    //@NamedQuery(name = "Repuestosxempresas.findAByIdUsuario", query = "SELECT r FROM Repuestosxempresas r WHERE r.Fk_idUsuarios = :idUsuarios"),
     @NamedQuery(name = "Repuestosxempresas.findByIdRepuestosxEmpresas", query = "SELECT r FROM Repuestosxempresas r WHERE r.idRepuestosxEmpresas = :idRepuestosxEmpresas"),
     @NamedQuery(name = "Repuestosxempresas.findByEstadoRepuestoempresa", query = "SELECT r FROM Repuestosxempresas r WHERE r.estadoRepuestoempresa = :estadoRepuestoempresa"),
     @NamedQuery(name = "Repuestosxempresas.findByCodigoRepuestoempresa", query = "SELECT r FROM Repuestosxempresas r WHERE r.codigoRepuestoempresa = :codigoRepuestoempresa"),
