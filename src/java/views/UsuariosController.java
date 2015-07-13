@@ -8,8 +8,6 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.servlet.http.HttpServletRequest;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -25,8 +23,6 @@ import views.util.JsfUtil;
 import views.util.PaginationHelper;
 
 @Named("usuariosController")
-@ManagedBean
-@RequestScoped
 @SessionScoped
 public class UsuariosController implements Serializable {
 
@@ -37,15 +33,7 @@ public class UsuariosController implements Serializable {
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    private String usuarioUsuario;
-    private String contrasenaUsuario;
-    private final HttpServletRequest httpServletRequest;
-    private final FacesContext faceContext;
-    private FacesMessage facesMessage;
-    
     public UsuariosController() {
-        faceContext=FacesContext.getCurrentInstance();
-        httpServletRequest=(HttpServletRequest)faceContext.getExternalContext().getRequest();
     }
 
     public Usuarios getSelected() {
@@ -170,19 +158,10 @@ public class UsuariosController implements Serializable {
         if (usuarioBd != null) {
             if (usuarioBd.getContrasenaUsuario().compareTo(usu.getContrasenaUsuario()) == 0) {
                 if(usuarioBd.getFkidPerfil().getIdPerfil() == 1){
-                    httpServletRequest.getSession().setAttribute("idUsuario", usuarioBd.getIdUsuarios().toString());
-                    facesMessage=new FacesMessage(FacesMessage.SEVERITY_INFO, "Acceso Correcto", null);
-                    faceContext.addMessage(null, facesMessage);
                     return "administrador";
                 }else if(usuarioBd.getFkidPerfil().getIdPerfil() == 2){
-                    httpServletRequest.getSession().setAttribute("idUsuario", usuarioBd.getIdUsuarios().toString());
-                    facesMessage=new FacesMessage(FacesMessage.SEVERITY_INFO, "Acceso Correcto", null);
-                    faceContext.addMessage(null, facesMessage);
                     return "comite";
                 }else{
-                    httpServletRequest.getSession().setAttribute("idUsuario", usuarioBd.getIdUsuarios().toString());
-                    facesMessage=new FacesMessage(FacesMessage.SEVERITY_INFO, "Acceso Correcto", null);
-                    faceContext.addMessage(null, facesMessage);
                     return "proveedor";
                 }
             } else {              

@@ -8,7 +8,6 @@ package controller;
 
 import java.util.List;
 import javax.persistence.EntityManager;
-import entities.Normas;
 
 /**
  *
@@ -16,7 +15,6 @@ import entities.Normas;
  */
 public abstract class AbstractFacade<T> {
     private Class<T> entityClass;
-    EntityManager em;
 
     public AbstractFacade(Class<T> entityClass) {
         this.entityClass = entityClass;
@@ -46,15 +44,9 @@ public abstract class AbstractFacade<T> {
         return getEntityManager().createQuery(cq).getResultList();
     }
     
-    public List<T> findByUser() {
-        javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
-        javax.persistence.criteria.Root<T> from = cq.from(Normas.class);
-        cq.select(cq.from(Normas.class));
-        cq.where(getEntityManager().getCriteriaBuilder().equal(from.get("Fk_idUsuarios"), 2));
-
-        return getEntityManager().createQuery(cq).getResultList();
-    }
     
+    
+
     public List<T> findRange(int[] range) {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));

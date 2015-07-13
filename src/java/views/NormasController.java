@@ -203,11 +203,11 @@ public class NormasController implements Serializable {
     }
 
     public SelectItem[] getItemsAvailableSelectMany() {
-        return JsfUtil.getSelectItems(ejbFacade.findByUser(), false);
+        return JsfUtil.getSelectItems(ejbFacade.findAll(), false);
     }
 
     public SelectItem[] getItemsAvailableSelectOne() {
-        return JsfUtil.getSelectItems(ejbFacade.findByUser(), true);
+        return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
     public Normas getNormas(java.lang.Integer id) {
