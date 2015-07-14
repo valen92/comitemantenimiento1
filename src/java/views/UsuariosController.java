@@ -8,6 +8,8 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.servlet.http.HttpServletRequest;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -23,6 +25,8 @@ import views.util.JsfUtil;
 import views.util.PaginationHelper;
 
 @Named("usuariosController")
+@ManagedBean
+@RequestScoped
 @SessionScoped
 public class UsuariosController implements Serializable {
 
@@ -32,8 +36,13 @@ public class UsuariosController implements Serializable {
     private controller.UsuariosFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    
+    private final HttpServletRequest httpServletRequest;
+    private final FacesContext faceContext;
 
     public UsuariosController() {
+        faceContext=FacesContext.getCurrentInstance();
+        httpServletRequest=(HttpServletRequest)faceContext.getExternalContext().getRequest();
     }
 
     public Usuarios getSelected() {
@@ -154,14 +163,18 @@ public class UsuariosController implements Serializable {
     }
 
     public String autenticar(Usuarios usu) {
+        
         Usuarios usuarioBd = ejbFacade.findporLogin(usu.getUsuarioUsuario());
         if (usuarioBd != null) {
             if (usuarioBd.getContrasenaUsuario().compareTo(usu.getContrasenaUsuario()) == 0) {
                 if(usuarioBd.getFkidPerfil().getIdPerfil() == 1){
+                    httpServletRequest.getSession().setAttribute("sessionUsuario", usuarioBd.getIdUsuarios());
                     return "administrador";
                 }else if(usuarioBd.getFkidPerfil().getIdPerfil() == 2){
+                    httpServletRequest.getSession().setAttribute("sessionUsuario", usuarioBd.getIdUsuarios());
                     return "comite";
                 }else{
+                    httpServletRequest.getSession().setAttribute("sessionUsuario", usuarioBd.getIdUsuarios());
                     return "proveedor";
                 }
             } else {              

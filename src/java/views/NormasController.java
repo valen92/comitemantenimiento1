@@ -20,7 +20,13 @@ import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 import org.primefaces.context.RequestContext;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.servlet.http.HttpServletRequest;
+
 @Named("normasController")
+@ManagedBean
+@RequestScoped
 @SessionScoped
 public class NormasController implements Serializable {
 
@@ -31,7 +37,14 @@ public class NormasController implements Serializable {
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
+    private final HttpServletRequest httpServletRequest;
+    private final FacesContext faceContext;
+    private int idU;
+    
     public NormasController() {
+        faceContext=FacesContext.getCurrentInstance();
+        httpServletRequest=(HttpServletRequest)faceContext.getExternalContext().getRequest();
+        idU = Integer.parseInt(httpServletRequest.getSession().getAttribute("sessionUsuario").toString());
     }
 
     public Normas getSelected() {
@@ -57,7 +70,7 @@ public class NormasController implements Serializable {
 
                 @Override
                 public DataModel createPageDataModel() {
-                    return new ListDataModel(getFacade().findporLogin(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    return new ListDataModel(getFacade().findporLogin(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()},idU));
                 }
             };
         }
