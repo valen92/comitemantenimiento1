@@ -35,11 +35,13 @@ public class NormasFacade extends AbstractFacade<Normas> {
     }
     
     public List<Normas> findporLogin(int[] range) {
-        String consulta = "select n from Normas n where n.fkidUsuarios = :idUsuario";
+        Usuarios usuario = new Usuarios ();
+        String consulta = "select n from Normas n where n.fkidUsuarios.idUsuarios = :idUsuario";
         Query q = getEntityManager().createQuery(consulta);
-        q.setParameter("idUsuario", 2);
+        q.setParameter("idUsuario", 2); //Variable a pasar de la sesión
         q.setMaxResults(range[1] - range[0] + 1);
         q.setFirstResult(range[0]);
+        System.out.println(""+usuario.getIdUsuarios());
         return q.getResultList();
     }
     

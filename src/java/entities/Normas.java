@@ -63,7 +63,7 @@ public class Normas implements Serializable {
     @Column(name = "descripcion_norma")
     private String descripcionNorma;
     @JoinColumn(name = "Fk_idUsuarios", referencedColumnName = "idUsuarios")
-    @ManyToOne(optional = true)
+    @ManyToOne(optional = false)
     private Usuarios fkidUsuarios;
 
     public Normas() {
