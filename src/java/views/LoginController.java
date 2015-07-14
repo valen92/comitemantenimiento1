@@ -16,7 +16,7 @@ import javax.faces.context.FacesContext;
  */
 public class LoginController {
 
-    private Usuarios usuarios=new Usuarios();
+    public Usuarios usuarios=new Usuarios();
 
     public Usuarios getUsuarios() {
         return usuarios;

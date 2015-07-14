@@ -57,7 +57,7 @@ public class NormasController implements Serializable {
 
                 @Override
                 public DataModel createPageDataModel() {
-                    return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    return new ListDataModel(getFacade().findporLogin(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
                 }
             };
         }
@@ -180,6 +180,7 @@ public class NormasController implements Serializable {
             items = getPagination().createPageDataModel();
         }
         return items;
+        
     }
 
     private void recreateModel() {
@@ -207,7 +208,7 @@ public class NormasController implements Serializable {
     }
 
     public SelectItem[] getItemsAvailableSelectOne() {
-        return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
+        return JsfUtil.getSelectItems(ejbFacade.findAll(), false);
     }
 
     public Normas getNormas(java.lang.Integer id) {

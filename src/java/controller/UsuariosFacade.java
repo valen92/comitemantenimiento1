@@ -53,5 +53,17 @@ public class UsuariosFacade extends AbstractFacade<Usuarios> {
         return null;
     }
     
+    public Usuarios findId(int idUsuarios) {
+//        EntityManager em2=getEntityManager();
+        Query q = em.createNamedQuery("Usuarios.findByIdUsuarios")
+                .setParameter("usuarioUsuario", idUsuarios);
+        List<Usuarios> list=q.getResultList();
+        if(list.size()>0)
+        {
+            return list.get(0);
+        }
+        return null;
+    }
+    
     
 }
