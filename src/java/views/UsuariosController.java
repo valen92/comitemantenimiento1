@@ -75,6 +75,25 @@ public class UsuariosController implements Serializable {
         return pagination;
     }
 
+    public PaginationHelper getPagination(int perf) {
+        final int perU = perf;
+        if (pagination == null) {
+            pagination = new PaginationHelper(10) {
+
+                @Override
+                public int getItemsCount() {
+                    return getFacade().count();
+                }
+
+                @Override
+                public DataModel createPageDataModel() {
+                    return new ListDataModel(getFacade().findporPerfil(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()},perU));
+                }
+            };
+        }
+        return pagination;
+    }
+    
     public String prepareList() {
         recreateModel();
         return "List";
@@ -169,6 +188,7 @@ public class UsuariosController implements Serializable {
             if (usuarioBd.getContrasenaUsuario().compareTo(usu.getContrasenaUsuario()) == 0) {
                 if(usuarioBd.getFkidPerfil().getIdPerfil() == 1){
                     httpServletRequest.getSession().setAttribute("sessionUsuario", usuarioBd.getIdUsuarios());
+                    System.out.println("Empresa "+usuarioBd.getFkidPerfil());
                     return "administrador";
                 }else if(usuarioBd.getFkidPerfil().getIdPerfil() == 2){
                     httpServletRequest.getSession().setAttribute("sessionUsuario", usuarioBd.getIdUsuarios());
@@ -222,6 +242,14 @@ public class UsuariosController implements Serializable {
         return items;
     }
 
+    public DataModel getItems(int per) {
+        
+        if (items == null) {
+            items = getPagination(per).createPageDataModel();
+        }
+        return items;
+    }
+    
     private void recreateModel() {
         items = null;
     }

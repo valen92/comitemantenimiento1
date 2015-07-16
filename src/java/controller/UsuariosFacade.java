@@ -65,5 +65,14 @@ public class UsuariosFacade extends AbstractFacade<Usuarios> {
         return null;
     }
     
+    public List<Usuarios> findporPerfil(int[] range, int idU) {
+        Usuarios usuario = new Usuarios ();
+        String consulta = "select n from Usuarios n where n.fkidPerfil.idPerfil = :idPerfil";
+        Query q = getEntityManager().createQuery(consulta);
+        q.setParameter("idPerfil", idU); //Variable a pasar de la sesión
+        q.setMaxResults(range[1] - range[0] + 1);
+        q.setFirstResult(range[0]);
+        return q.getResultList();
+    }
     
 }

@@ -41,7 +41,7 @@
                     </p:tabMenu>
                  </h:panelGrid>
                 <p:panel header="Directorio Miembros">
-               <p:dataTable value="#{usuariosController.items}" var="item" 
+               <p:dataTable value="#{usuariosController.getItems(2)}" var="item" 
                          rows="5"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
