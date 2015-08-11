@@ -23,7 +23,7 @@
                         <p:menuitem value="Herramientas" url="/faces/herramientasxempcomite/herramientas.xhtml" icon="ui-icon-wrench">
                             <f:param name="index" value="2" />
                         </p:menuitem>
-                        <p:menuitem value="Directorio Miembros" url="/faces/usuarios/DirMiembros.xhtml" icon="ui-icon-contact"  >
+                        <p:menuitem value="Directorio Miembros" action="#{usuariosController.Miembros}" icon="ui-icon-contact"  >
                             <f:param name="index" value="3" />
                         </p:menuitem>
                         <p:menuitem value="Directorio Proveedores" url="/faces/usuarios/DirProveedores.xhtml"  icon="ui-icon-contact">
@@ -56,11 +56,11 @@
                             <h:outputText value="#{item.apellidoUsuario}"/>
                         </p:column>
                          
-                        <p:column headerText="Teléfono">
+                        <p:column headerText="Teléfono" width="100">
                             <h:outputText value="#{item.fijoUsuario}"/>
                         </p:column>
                          
-                        <p:column headerText="Celular">
+                   <p:column headerText="Celular" width="100">
                             <h:outputText value="#{item.movilUsuario}"/>
                         </p:column>
                         
@@ -69,7 +69,7 @@
                         </p:column>
                         
                         <p:column style="width:24px">
-                            <h:commandLink action="#{servicioscontratoController.prepareList}" styleClass="ui-icon ui-icon-search"/>
+                            <h:commandLink action="#{servicioscontratoController.prepareList(item.fkidEmpresas)}" styleClass="ui-icon ui-icon-search"/>
                             <h:outputText value=" "/>
                         </p:column>    
                         <p:column style="width:24px">
