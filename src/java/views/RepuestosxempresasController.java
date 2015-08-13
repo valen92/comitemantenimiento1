@@ -61,63 +61,6 @@ public class RepuestosxempresasController implements Serializable {
         }
         return pagination;
     }
-    
-    public PaginationHelper getPaginationM(int tipoRepuesto) {
-        final int tipoR = tipoRepuesto;
-        if (pagination == null) {
-            pagination = new PaginationHelper(10) {
-
-                @Override
-                public int getItemsCount() {
-                    return getFacade().count();
-                }
-
-                @Override
-                public DataModel createPageDataModel() {
-                    return new ListDataModel(getFacade().findporTipoRepuestoM(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()},tipoR));
-                }
-            };
-        }
-        return pagination;
-    }
-    
-    public PaginationHelper getPaginationE(int tipoRepuesto) {
-        final int tipoR = tipoRepuesto;
-        if (pagination == null) {
-            pagination = new PaginationHelper(10) {
-
-                @Override
-                public int getItemsCount() {
-                    return getFacade().count();
-                }
-
-                @Override
-                public DataModel createPageDataModel() {
-                    return new ListDataModel(getFacade().findporTipoRepuestoE(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()},tipoR));
-                }
-            };
-        }
-        return pagination;
-    }
-    
-    public PaginationHelper getPaginationI(int tipoRepuesto) {
-        final int tipoR = tipoRepuesto;
-        if (pagination == null) {
-            pagination = new PaginationHelper(10) {
-
-                @Override
-                public int getItemsCount() {
-                    return getFacade().count();
-                }
-
-                @Override
-                public DataModel createPageDataModel() {
-                    return new ListDataModel(getFacade().findporTipoRepuestoI(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()},tipoR));
-                }
-            };
-        }
-        return pagination;
-    }
 
     public String prepareList() {
         recreateModel();
@@ -217,27 +160,6 @@ public class RepuestosxempresasController implements Serializable {
         return items;
     }
 
-    public DataModel getItemsM(int tipoRepuesto) {
-        if (items == null) {
-            items = getPaginationM(tipoRepuesto).createPageDataModel();
-        }
-        return items;
-    }
-    
-    public DataModel getItemsE(int tipoRepuesto) {
-        if (items == null) {
-            items = getPaginationE(tipoRepuesto).createPageDataModel();
-        }
-        return items;
-    }
-    
-    public DataModel getItemsI(int tipoRepuesto) {
-        if (items == null) {
-            items = getPaginationI(tipoRepuesto).createPageDataModel();
-        }
-        return items;
-    }
-    
     private void recreateModel() {
         items = null;
     }
